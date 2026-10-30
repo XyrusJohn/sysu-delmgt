@@ -1,0 +1,13 @@
+Truck Driver Phone (Kotlin App) 
+        │
+        ▼
+Backend API (Node.js + Express)
+        │ queries yung mga data
+        ▼
+MySQL Database (truck_app)
+        │
+        ▼
+Admin Dashboard (React Web App)
+        │
+        ▼
+Map visualization (Google Maps / Leaflet)

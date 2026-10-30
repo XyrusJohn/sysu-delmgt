@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="@dimen/corner_radius_small"
+    app:cardElevation="0.5dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/surface2">
+
+    <!-- Status color bar — top of card; color set programmatically per delivery state -->
+    <View
+        android:id="@+id/viewStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/sysu_green" />
+
+    <!-- Main content block -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <!-- OBD number + POD indicator + status pill — top row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvObdNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold"
+                android:letterSpacing="0.04"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="6051559329" />
+
+            <!-- POD indicator — circular badge for completed rows, gone otherwise -->
+            <ImageView
+                android:id="@+id/ivPodIndicator"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="8dp"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                android:contentDescription="POD status indicator"
+                tools:visibility="visible"
+                tools:src="@drawable/ic_checkmark_white" />
+
+            <!-- Per-row loading indicator — visible while status is being reloaded -->
+            <ProgressBar
+                android:id="@+id/pbItemLoading"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:indeterminateTint="@color/sysu_red" />
+
+            <!-- Delivery status pill — color-coded label -->
+            <TextView
+                android:id="@+id/tvDeliveryStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textSize="@dimen/text_size_caption"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                tools:text="DELIVERED"
+                tools:textColor="@color/text_amber"
+                tools:background="@color/amber_pill_bg" />
+        </LinearLayout>
+
+        <!-- Horizontal dividers + field rows -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/surface2" />
+
+        <!-- Volume row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_volume"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_caption" />
+
+            <TextView
+                android:id="@+id/tvVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_caption"
+                android:textStyle="bold"
+                tools:text="0.975 m³" />
+        </LinearLayout>
+
+        <!-- Quantity row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_quantity"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_caption" />
+
+            <TextView
+                android:id="@+id/tvDetailQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_caption"
+                android:textStyle="bold"
+                tools:text="39.000" />
+        </LinearLayout>
+
+        <!-- Horizontal dividers + customer name row -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/surface2" />
+
+        <!-- Customer name -->
+        <TextView
+            android:id="@+id/tvCustomerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_caption"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            tools:text="PIZZARINA PIZZARAP" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

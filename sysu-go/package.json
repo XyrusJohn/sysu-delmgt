@@ -1,0 +1,11 @@
+{
+  "name": "sysu-go",
+  "version": "1.0.0",
+  "description": "SYSU Go backend deployment wrapper",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix backend run dev",
+    "start": "cd backend && npm start",
+    "install": "cd backend && npm install"
+  }
+}

@@ -1,0 +1,15 @@
+Driver App (Kotlin)
+  |
+POST (api/register)
+  |
+POST (api/login)
+  |
+Server (Driver Request) // server.js
+  |
+Routes (Login / Registration) // routes/loginRoute.js
+  |
+Controller (Valid Credential / Invalaid Credential) // controller/loginController.js
+  |
+Model (Kunin and Data /  I-Save ang Data) // models/driverModel.js
+  |
+Database // config/db.js

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Floating bottom panel shown when driver is in-transit with all PODs
+    complete AND all assigned shipments are marked "delivered".
+
+    Appears instead of TransitActivity when driver taps the map icon.
+    Two button variants:
+      - "START RETURNING TO BASE" -> driver is done deliveries, heading home
+      - "ARRIVED AT WAREHOUSE"   -> driver is already in returning_to_base state
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Tap-outside overlay to dismiss -->
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/panelCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/panelCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginHorizontal="@dimen/screen_padding_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="@dimen/corner_radius_pill"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Colored top bar matching card theme -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/sysu_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Handle bar -->
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_drag_handle" />
+
+                <!-- Icon + Title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_location_crosshairs"
+                        app:tint="@color/sysu_blue"
+                        android:contentDescription="Return to base" />
+
+                    <TextView
+                        android:id="@+id/tvPanelTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="All Deliveries Complete"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                </LinearLayout>
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/tvPanelSubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Ready to return to the warehouse?"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_caption" />
+
+                <!-- Completed shipments summary -->
+                <TextView
+                    android:id="@+id/tvDeliveredSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/sysu_green"
+                    android:textSize="@dimen/text_size_caption"
+                    tools:text="Shipments 001 and 002 delivered" />
+
+                <!-- Geofence Distance & Status Indicator for Arrived at Base -->
+                <LinearLayout
+                    android:id="@+id/llGeofenceStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_section_card"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivGeofenceIcon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_location_crosshairs"
+                            app:tint="@color/sysu_red"
+                            android:contentDescription="Geofence" />
+
+                        <TextView
+                            android:id="@+id/tvGeofenceHeader"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="Warehouse Geofence Check"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+
+                        <TextView
+                            android:id="@+id/tvGeofenceBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nasa Labas Pa"
+                            android:textColor="@color/sysu_red"
+                            android:textSize="10sp"
+                            android:background="@drawable/bg_chip_required"
+                            android:paddingHorizontal="6dp"
+                            android:paddingVertical="2dp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvGeofenceDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Kasalukuyang distansya: Kinakalkula..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                </LinearLayout>
+
+                <!-- Loading indicator -->
+                <LinearLayout
+                    android:id="@+id/llLoading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ProgressBar
+                        android:id="@+id/pbReturnLoading"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:indeterminateTint="@color/sysu_blue" />
+
+                    <TextView
+                        android:id="@+id/tvLoadingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Updating..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+                </LinearLayout>
+
+                <!-- Primary action button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirmReturn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="20dp"
+                    android:text="START RETURNING TO BASE"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_button"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    app:elevation="4dp"
+                    app:strokeWidth="0dp"
+                    app:backgroundTint="@color/sysu_blue"
+                    app:cornerRadius="@dimen/corner_radius_button" />
+
+                <!-- Secondary dismiss button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDismiss"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="4dp"
+                    android:text="Nope"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    app:rippleColor="@color/divider"
+                    app:cornerRadius="@dimen/corner_radius_button" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:id="@+id/uploadBlockingOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#99000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:elevation="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/bg_section_card">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/sysu_blue" />
+
+            <TextView
+                android:id="@+id/tvUploadBlockingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Ina-upload ang trip history..."
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:fontFamily="@font/atkinson_hyperlegible_bold" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

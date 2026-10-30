@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SYSU | Queue</title>
+    <link rel="icon" type="image/png" href="/SYSU.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── DARK (default) ── */
+      :root,
+      [data-theme="dark"] {
+        --red: #c8102e;
+        --red-lo: rgba(200, 16, 46, 0.1);
+        --red-md: rgba(200, 16, 46, 0.22);
+        --bg: #09090e;
+        --s1: #101016;
+        --s2: #16161e;
+        --s3: #1d1d26;
+        --bd: rgba(255, 255, 255, 0.06);
+        --bd2: rgba(255, 255, 255, 0.11);
+        --txt: #f0f0f5;
+        --sub: #72728a;
+        --dim: #48485e;
+        --green: #3ecf6a;
+        --gdim: rgba(62, 207, 106, 0.09);
+        --gbd: rgba(62, 207, 106, 0.25);
+        --qr-bg: #ffffff;
+      }
+
+      /* ── LIGHT ── */
+      [data-theme="light"] {
+        --red: #c8102e;
+        --red-lo: rgba(200, 16, 46, 0.07);
+        --red-md: rgba(200, 16, 46, 0.16);
+        --bg: #f0f0f5;
+        --s1: #ffffff;
+        --s2: #f5f5fa;
+        --s3: #eaeaf2;
+        --bd: rgba(0, 0, 0, 0.07);
+        --bd2: rgba(0, 0, 0, 0.12);
+        --txt: #0e0e18;
+        --sub: #6060780;
+        --sub: #606078;
+        --dim: #9090a8;
+        --green: #1ea84e;
+        --gdim: rgba(30, 168, 78, 0.07);
+        --gbd: rgba(30, 168, 78, 0.25);
+        --qr-bg: #ffffff;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--txt);
+        font-family: "Atkinson Hyperlegible", sans-serif;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+
+      /* ROOT */
+      .root {
+        display: grid;
+        grid-template-columns: 540px 1fr;
+        grid-template-rows: 56px 1fr;
+        height: 100vh;
+      }
+
+      /* TOPBAR */
+      .topbar {
+        grid-column: 1/-1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        background: var(--s1);
+        border-bottom: 1px solid var(--bd2);
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .tl {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .logobox {
+        width: 30px;
+        height: 30px;
+        background: var(--red);
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .logobox svg {
+        width: 14px;
+        height: 14px;
+      }
+      .brand {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--txt);
+      }
+      .brand em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .tr {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .live {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--sub);
+        text-transform: uppercase;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--red);
+        animation: blink 1.6s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.12;
+        }
+      }
+      #clock {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--txt);
+      }
+      .ibtn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid var(--bd2);
+        border-radius: 7px;
+        cursor: pointer;
+        color: var(--dim);
+        transition: 0.15s;
+        padding: 0;
+      }
+      .ibtn:hover {
+        color: var(--txt);
+        border-color: var(--red);
+        background: var(--red-lo);
+      }
+      .ibtn svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* theme toggle icon swap */
+      .icon-sun {
+        display: none;
+      }
+      .icon-moon {
+        display: block;
+      }
+      [data-theme="light"] .icon-sun {
+        display: block;
+      }
+      [data-theme="light"] .icon-moon {
+        display: none;
+      }
+
+      /* QR PANEL */
+      .qr-panel {
+        grid-column: 1;
+        grid-row: 2;
+        background: var(--s1);
+        border-right: 1px solid var(--bd2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 16px 20px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .qr-panel::before {
+        content: "";
+        position: absolute;
+        bottom: -140px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(200, 16, 46, 0.07) 0%,
+          transparent 62%
+        );
+        pointer-events: none;
+      }
+
+      .qr-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dim);
+        z-index: 1;
+      }
+
+      /* QR FRAME */
+      .qr-frame {
+        position: relative;
+        padding: 14px;
+        background: var(--qr-bg);
+        border-radius: 14px;
+        z-index: 1;
+        animation: pulse 2.6s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.6);
+        }
+        65% {
+          box-shadow: 0 0 0 18px rgba(200, 16, 46, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 16, 46, 0);
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .c {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-color: var(--red);
+        border-style: solid;
+      }
+      .c.tl {
+        top: -5px;
+        left: -5px;
+        border-width: 3px 0 0 3px;
+        border-radius: 4px 0 0 0;
+      }
+      .c.tr {
+        top: -5px;
+        right: -5px;
+        border-width: 3px 3px 0 0;
+        border-radius: 0 4px 0 0;
+      }
+      .c.bl {
+        bottom: -5px;
+        left: -5px;
+        border-width: 0 0 3px 3px;
+        border-radius: 0 0 0 4px;
+      }
+      .c.br {
+        bottom: -5px;
+        right: -5px;
+        border-width: 0 3px 3px 0;
+        border-radius: 0 0 4px 0;
+      }
+      #qr-box {
+        display: block;
+      }
+      #qr-box img,
+      #qr-box canvas {
+        display: block;
+        width: 440px !important;
+        height: 440px !important;
+      }
+
+      /* INSTRUCTION */
+      .qr-instr {
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+        background: var(--s2);
+        border: 1px solid var(--bd2);
+        border-radius: 10px;
+        padding: 11px 16px;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .qr-instr-main {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--txt);
+        line-height: 1.3;
+      }
+      .qr-instr-main span {
+        color: var(--red);
+      }
+      .qr-instr-sub {
+        font-size: 12px;
+        color: var(--sub);
+        margin-top: 3px;
+      }
+
+      /* TOKEN — bigger font */
+      .tok-wrap {
+        z-index: 1;
+        text-align: center;
+      }
+      .tok {
+        display: inline-block;
+        font-family: monospace;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dim);
+        background: var(--s2);
+        border: 1px solid var(--bd2);
+        border-radius: 6px;
+        padding: 5px 14px;
+        transition:
+          background 0.25s,
+          border-color 0.25s,
+          color 0.25s;
+      }
+      .tok.live {
+        color: var(--green);
+        border-color: var(--gbd);
+      }
+      .tok-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-top: 4px;
+      }
+
+      .qr-foot {
+        font-size: 12px;
+        color: var(--dim);
+        z-index: 1;
+      }
+      .qr-foot b {
+        color: var(--red);
+      }
+      .qr-err {
+        font-size: 11px;
+        color: var(--red);
+        display: none;
+        z-index: 1;
+        text-align: center;
+      }
+
+      /* QUEUE AREA */
+      .queue-area {
+        grid-column: 2;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        background: var(--bg);
+        overflow: hidden;
+        transition: background 0.25s;
+      }
+      .qcol {
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--bd);
+        overflow: hidden;
+      }
+      .qcol:last-child {
+        border-right: none;
+      }
+
+      .qcol-hd {
+        height: 48px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--s1);
+        border-bottom: 1px solid var(--bd2);
+        flex-shrink: 0;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .qcol-name {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--txt);
+      }
+      .qcol-cnt {
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 20px;
+        padding: 2px 9px;
+        min-width: 24px;
+        text-align: center;
+      }
+      .qcol-cnt.has {
+        background: var(--red);
+        color: #fff;
+      }
+      .qcol-cnt.zero {
+        background: var(--s3);
+        color: var(--dim);
+      }
+
+      .qcol-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 7px 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: var(--s1);
+        transition: background 0.25s;
+      }
+      .qcol-body::-webkit-scrollbar {
+        width: 2px;
+      }
+      .qcol-body::-webkit-scrollbar-thumb {
+        background: var(--bd2);
+        border-radius: 2px;
+      }
+      .empty {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--dim);
+        text-align: center;
+        margin-top: 24px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      /* QUEUE CARD */
+      .qcard {
+        border-radius: 8px;
+        border-left: 3px solid var(--dim);
+        background: var(--s2);
+        padding: 7px 9px 7px 10px;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .qcard.s-waiting {
+        border-left-color: var(--dim);
+        background: var(--s2);
+      }
+      .qcard.s-loading {
+        border-left-color: var(--red);
+        background: var(--red-lo);
+      }
+      .qcard.s-complete {
+        border-left-color: var(--green);
+        background: var(--gdim);
+        opacity: 0.55;
+      }
+
+      /* Queue number */
+      .qcard-num {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.01em;
+        margin-bottom: 3px;
+      }
+      .qcard.s-waiting .qcard-num {
+        color: var(--txt);
+      }
+      .qcard.s-loading .qcard-num {
+        color: var(--red);
+      }
+      .qcard.s-complete .qcard-num {
+        color: var(--green);
+      }
+
+      /* Status */
+      .qcard-st {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+      .qcard.s-waiting .qcard-st {
+        color: var(--sub);
+      }
+      .qcard.s-loading .qcard-st {
+        color: var(--red);
+      }
+      .qcard.s-complete .qcard-st {
+        color: var(--green);
+      }
+      .sdot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+      }
+      .qcard.s-loading .sdot {
+        animation: blink 0.9s ease-in-out infinite;
+      }
+
+      .qcard-sep {
+        height: 1px;
+        background: var(--bd);
+        margin-bottom: 6px;
+      }
+
+      /* Driver name — bumped up */
+      .qcard-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--txt);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 4px;
+        line-height: 1.2;
+      }
+      .qcard.s-complete .qcard-name {
+        color: var(--sub);
+      }
+
+      /* Plate — bigger */
+      .qcard-plate {
+        font-family: monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--sub);
+        background: var(--s3);
+        border: 1px solid var(--bd2);
+        border-radius: 3px;
+        padding: 2px 7px;
+        display: inline-block;
+        margin-bottom: 3px;
+      }
+
+      /* Company — bigger */
+      .qcard-co {
+        font-size: 11px;
+        color: var(--dim);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* TOASTS */
+      .toasts {
+        position: fixed;
+        top: 68px;
+        right: 14px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        pointer-events: none;
+      }
+      .toast {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: var(--s2);
+        border: 1px solid var(--gbd);
+        border-radius: 10px;
+        min-width: 210px;
+        max-width: 280px;
+        animation: tin 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+      }
+      .toast.out {
+        animation: tout 0.3s ease-in forwards;
+      }
+      @keyframes tin {
+        from {
+          opacity: 0;
+          transform: translateX(110%) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes tout {
+        from {
+          opacity: 1;
+          transform: none;
+        }
+        to {
+          opacity: 0;
+          transform: translateX(110%) scale(0.95);
+        }
+      }
+      .tico {
+        width: 32px;
+        height: 32px;
+        background: var(--gdim);
+        border: 1px solid var(--gbd);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .tico svg {
+        width: 15px;
+        height: 15px;
+      }
+      .tlbl {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 2px;
+      }
+      .tnm {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--txt);
+      }
+      .tmeta {
+        font-size: 10px;
+        color: var(--sub);
+        font-family: monospace;
+        margin-top: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toasts" id="toasts"></div>
+
+    <div class="root">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="tl">
+          <div class="logobox">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+            </svg>
+          </div>
+          <div class="brand">SYSU <em>Queue</em> Command Center</div>
+        </div>
+        <div class="tr">
+          <!-- Theme toggle -->
+          <button id="themeBtn" class="ibtn" title="Toggle theme">
+            <!-- sun (shown in light mode) -->
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <!-- moon (shown in dark mode) -->
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+          <button id="refreshQR" class="ibtn" title="Refresh QR">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path
+                d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+              />
+            </svg>
+          </button>
+          <div class="live" id="queue-status" role="status" aria-live="polite">
+            Queue loading...
+          </div>
+          <a href="/" id="queue-access">Sign in for driver details</a>
+          <div id="clock">--:--:-- --</div>
+        </div>
+      </header>
+
+      <!-- QR PANEL -->
+      <aside class="qr-panel">
+        <div class="qr-eyebrow">I-scan para mag-Time In</div>
+        <div class="qr-frame">
+          <div class="c tl"></div>
+          <div class="c tr"></div>
+          <div class="c bl"></div>
+          <div class="c br"></div>
+          <div id="qr-box"></div>
+        </div>
+        <div class="qr-instr">
+          <div class="qr-instr-main">
+            📱 Itutok ang <span>camera</span> sa QR
+          </div>
+          <div class="qr-instr-sub">
+            Lilitaw ang link · i-tap para mag-register
+          </div>
+        </div>
+        <div class="tok-wrap">
+          <div id="qr-token" class="tok">STANDBY</div>
+          <div class="tok-lbl">Auth Token</div>
+        </div>
+        <div class="qr-foot">Auto-refresh bawat <b id="countdown">60</b>s</div>
+        <div class="qr-err" id="qr-err"></div>
+      </aside>
+
+      <!-- QUEUE COLUMNS -->
+      <main class="queue-area">
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">AUV</span
+            ><span class="qcol-cnt zero" id="cnt-AUV">0</span>
+          </div>
+          <div class="qcol-body" id="body-AUV">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">4W</span
+            ><span class="qcol-cnt zero" id="cnt-4W">0</span>
+          </div>
+          <div class="qcol-body" id="body-4W">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">6W</span
+            ><span class="qcol-cnt zero" id="cnt-6W">0</span>
+          </div>
+          <div class="qcol-body" id="body-6W">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">10W</span
+            ><span class="qcol-cnt zero" id="cnt-10W">0</span>
+          </div>
+          <div class="qcol-body" id="body-10W">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">20F</span
+            ><span class="qcol-cnt zero" id="cnt-20F">0</span>
+          </div>
+          <div class="qcol-body" id="body-20F">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+        <div class="qcol">
+          <div class="qcol-hd">
+            <span class="qcol-name">40F</span
+            ><span class="qcol-cnt zero" id="cnt-40F">0</span>
+          </div>
+          <div class="qcol-body" id="body-40F">
+            <div class="empty">Wala pa</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const API = "%VITE_API_URL%";
+      const QR_SEC = 60;
+      const TYPES = ["AUV", "4W", "6W", "10W", "20F", "40F"];
+
+      /* ── Socket.IO public /qr namespace — no auth, receives immediate QR restart events ── */
+      // The main namespace requires a MySQL-backed session token (admin dashboard only).
+      // The /qr namespace is public — qr-generator.html uses this to get instant
+      // qr_token_used events without any authentication.
+      async function initSocket() {
+        try {
+          const { io } =
+            await import("https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/+esm");
+          const socket = io(API + "/qr", {
+            // ← public /qr namespace
+            transports: ["websocket", "polling"],
+            reconnectionDelay: 1000,
+          });
+          socket.on("connect", () => {});
+          socket.on("qr_token_used", () => {
+            fetchQR();
+          });
+          socket.on("disconnect", () => {});
+        } catch (e) {
+          // Socket unavailable — 60s interval fallback handles everything
+        }
+      }
+      document.addEventListener("DOMContentLoaded", initSocket, { once: true });
+
+      /* ── Clock ── */
+      function p(n) {
+        return String(n).padStart(2, "0");
+      }
+      function tick() {
+        const n = new Date(),
+          h = n.getHours(),
+          m = n.getMinutes(),
+          s = n.getSeconds();
+        document.getElementById("clock").textContent =
+          p(h % 12 || 12) +
+          ":" +
+          p(m) +
+          ":" +
+          p(s) +
+          " " +
+          (h >= 12 ? "PM" : "AM");
+      }
+      setInterval(tick, 1000);
+      tick();
+
+      /* ── Theme toggle ── */
+      const root = document.documentElement;
+      const saved = localStorage.getItem("sysu-theme") || "dark";
+      root.setAttribute("data-theme", saved);
+      document.getElementById("themeBtn").addEventListener("click", () => {
+        const next =
+          root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("sysu-theme", next);
+      });
+
+      /* ── Helpers ── */
+      function esc(s) {
+        if (typeof s !== "string") return "";
+        const d = document.createElement("div");
+        d.textContent = s;
+        return d.innerHTML;
+      }
+
+      /* ── Public queue ── */
+      // Anonymous display contains positions only; identity remains in staff/driver views.
+      function card(row, detailed) {
+        const called = detailed && row.status === "called";
+        return `<div class="qcard ${called ? "s-called" : "s-waiting"}">
+<div class="qcard-num">#${String(row.position).padStart(3, "0")}</div>
+<div class="qcard-st"><span class="sdot"></span>${called ? "Tinatawag" : "Naghihintay"}</div>
+${detailed ? '<div class="qcard-sep"></div><div class="qcard-name">' + esc(row.driverName || "Driver") + '</div><div class="qcard-plate">' + esc(row.plateNumber || "Plate unavailable") + "</div>" : ""}
+</div>`;
+      }
+
+      function render(queues, detailed = false) {
+        TYPES.forEach((type) => {
+          const body = document.getElementById("body-" + type),
+            cnt = document.getElementById("cnt-" + type);
+          const rows = (Array.isArray(queues[type]) ? queues[type] : [])
+            .slice(0, 100)
+            .filter(
+              (row) =>
+                Number.isInteger(row?.position) &&
+                row.position >= 1 &&
+                row.position <= 100,
+            );
+          cnt.textContent = rows.length;
+          cnt.className = "qcol-cnt " + (rows.length > 0 ? "has" : "zero");
+          body.innerHTML =
+            rows.length === 0
+              ? '<div class="empty">Wala pa</div>'
+              : rows.map((row) => card(row, detailed)).join("");
+        });
+      }
+
+      let queuePending = false;
+      let queueRevision = 0;
+      window.addEventListener("kiosk-auth-changed", () => {
+        queueRevision++;
+        render({});
+        document.getElementById("queue-access").textContent =
+          window.kioskQueueUser
+            ? "Staff queue view"
+            : "Sign in for driver details";
+        fetchQueue();
+      });
+      async function fetchQueue() {
+        if (queuePending) return;
+        queuePending = true;
+        const revision = queueRevision;
+        const user = window.kioskQueueUser;
+        const status = document.getElementById("queue-status");
+        try {
+          const options = { signal: AbortSignal.timeout(8000) };
+          const sessionToken =
+            sessionStorage.getItem("sysu.mysql.session") ||
+            localStorage.getItem("sysu.mysql.session");
+          if (user && sessionToken)
+            options.headers = { Authorization: "Bearer " + sessionToken };
+          const response = await fetch(
+            API + (user ? "/api/qr/queue-cards" : "/api/qr/queue-display"),
+            options,
+          );
+          if (!response.ok) throw new Error("Queue unavailable");
+          const result = await response.json();
+          if (!result.success || !result.data?.queues)
+            throw new Error("Invalid queue response");
+          const asOf = new Date(result.data.asOf);
+          if (!Number.isFinite(asOf.getTime()))
+            throw new Error("Invalid queue timestamp");
+          if (revision !== queueRevision) return;
+          render(result.data.queues, Boolean(user));
+          status.textContent =
+            "Updated " +
+            asOf.toLocaleTimeString() +
+            (result.data.truncated ? " - first 100 queue entries" : "");
+        } catch {
+          if (revision !== queueRevision) return;
+          status.textContent = "Queue unavailable - retrying";
+          TYPES.forEach((type) => {
+            document.getElementById("cnt-" + type).textContent = "—";
+            document.getElementById("body-" + type).innerHTML =
+              '<div class="empty">Queue unavailable</div>';
+          });
+        } finally {
+          queuePending = false;
+          if (revision !== queueRevision) fetchQueue();
+        }
+      }
+      let cd = QR_SEC;
+      const cdEl = document.getElementById("countdown");
+      const tokEl = document.getElementById("qr-token");
+      const errEl = document.getElementById("qr-err");
+
+      function renderQR(token) {
+        const box = document.getElementById("qr-box");
+        box.innerHTML = "";
+        new QRCode(box, {
+          text: token,
+          width: 440,
+          height: 440,
+          colorDark: "#000",
+          colorLight: "#fff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+        tokEl.textContent = token;
+        tokEl.className = "tok live";
+      }
+
+      async function fetchQR() {
+        errEl.style.display = "none";
+        try {
+          const r = await fetch(API + "/api/qr/generate");
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          const j = await r.json();
+          if (!j.success) throw new Error(j.message || "failed");
+          renderQR(j.token);
+          // Dynamic countdown based on server's expiresAt (5-minute tokens)
+          const expiresAt = j.expiresAt ? new Date(j.expiresAt) : null;
+          if (expiresAt) {
+            cd = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+            cdEl.textContent = cd;
+          } else {
+            cd = QR_SEC;
+          }
+        } catch (e) {
+          errEl.textContent =
+            "Token fetch failed — check backend: " + e.message;
+          errEl.style.display = "block";
+          // Also show a toast notification for backend errors
+          const w = document.getElementById("toasts"),
+            t = document.createElement("div");
+          t.className = "toast";
+          t.innerHTML =
+            '<div class="tico" style="background:rgba(200,16,46,0.1);border-color:rgba(200,16,46,0.3);"><svg viewBox="0 0 24 24" fill="none" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>' +
+            '<div><div class="tlbl" style="color:#c8102e;">Token Error</div><div class="tnm" style="color:#f0f0f5;">Backend unreachable</div><div class="tmeta" style="color:#72728a;">' +
+            esc(e.message) +
+            "</div></div>";
+          w.appendChild(t);
+          setTimeout(() => {
+            t.classList.add("out");
+            setTimeout(() => t.remove(), 350);
+          }, 5000);
+        }
+      }
+
+      setInterval(() => {
+        cd--;
+        if (cdEl) cdEl.textContent = cd;
+        if (cd <= 0) {
+          cd = QR_SEC;
+          fetchQR();
+        }
+      }, 1000);
+      document.getElementById("refreshQR").addEventListener("click", fetchQR);
+
+      /* ── Boot ── */
+      const spinnerHTML = `<div style="width:440px;height:440px;display:flex;align-items:center;justify-content:center;"><div style="width:48px;height:48px;border:4px solid rgba(200,16,46,0.2);border-top-color:#c8102e;border-radius:50%;animation:spin 0.8s linear infinite;"></div></div>`;
+      document.getElementById("qr-box").innerHTML = spinnerHTML;
+      document.getElementById("qr-token").textContent = "LOADING...";
+      document.getElementById("qr-token").className = "tok";
+      fetchQR();
+      fetchQueue();
+      setInterval(fetchQueue, 5000);
+    </script>
+    <script type="module" src="/src/pages/kioskAuth.js"></script>
+  </body>
+</html>

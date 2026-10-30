@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface2">
+
+    <!--  -->
+    <!-- RED HERO — Brand anchor. Not loud. Just official.  -->
+    <!--  -->
+    <FrameLayout
+        android:id="@+id/headerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/sysu_red"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- One ambient circle — depth, not decoration -->
+        <View
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="-50dp"
+            android:layout_marginBottom="-50dp"
+            android:alpha="0.16"
+            android:background="@drawable/bg_circle_light_red" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/atkinson_hyperlegible_bold"
+                android:letterSpacing="0.02"
+                android:text="@string/trip_registration_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_headline"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/atkinson_hyperlegible_regular"
+                android:text="Complete your trip details to proceed"
+                android:textColor="#D0D0D0"
+                android:textSize="@dimen/text_size_body" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="28dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Go Back"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white" />
+    </FrameLayout>
+
+    <!-- Guideline: top of the bottom button bar — form stops here -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/formBottomGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="132dp" />
+
+    <!--  -->
+    <!-- WHITE CARD — Clean surface floats above hero       -->
+    <!--  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/contentCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="-28dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toTopOf="@id/formBottomGuideline"
+        app:layout_constraintTop_toBottomOf="@id/headerBackground">
+
+        <ScrollView
+            android:id="@+id/formScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="28dp">
+
+                <!--  -->
+                <!-- HELPER SECTION                            -->
+                <!-- Section header IS the visual divider     -->
+                <!--  -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp">
+
+                    <!-- Section completion indicator -->
+                    <View
+                        android:id="@+id/indicatorHelper"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/indicator_empty" />
+
+                    <!-- Bold, visible — this IS the section boundary -->
+                    <TextView
+                        android:id="@+id/tvHelperHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="Helper"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Co-driver or assistant riding with you"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_body" />
+
+                <LinearLayout
+                    android:id="@+id/helpersContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <Button
+                    android:id="@+id/btnAddHelper"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:text="+ Add Another Helper"
+                    android:textAllCaps="false"
+                    android:textColor="@color/sysu_red"
+                    android:textSize="@dimen/text_size_label" />
+
+                <!--  -->
+                <!-- TRUCK SECTION                             -->
+                <!--  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp">
+
+                    <!-- Section completion indicator -->
+                    <View
+                        android:id="@+id/indicatorTruck"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/indicator_done" />
+
+                    <TextView
+                        android:id="@+id/tvTruckHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="Truck"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Select your truck type"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_body" />
+
+                <Spinner
+                    android:id="@+id/spTruckType"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:background="@drawable/spinner_background"
+                    android:paddingHorizontal="16dp"
+                    android:popupBackground="@color/white" />
+
+                <!--  -->
+                <!-- PLATE NUMBER — Hero field, largest       -->
+                <!--  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp">
+
+                    <!-- Section completion indicator -->
+                    <View
+                        android:id="@+id/indicatorPlate"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/indicator_empty" />
+
+                    <TextView
+                        android:id="@+id/tvPlateHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="Plate Number"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- PERSISTENT format badge — always visible, never disappears -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/bg_plate_tag"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="8dp">
+
+                    <!-- Three letter boxes -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_plate_format_box"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold"
+                            android:letterSpacing="0.1"
+                            android:text="AAA"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_label" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="6dp"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="—"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_title" />
+
+                    <!-- Four digit boxes -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_plate_format_box"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold"
+                            android:letterSpacing="0.06"
+                            android:text="1234"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_label" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Actual plate inputs -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPlatePrefix"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="ABC"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPlatePrefix"
+                            android:layout_width="match_parent"
+                            android:layout_height="62dp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold"
+                            android:gravity="center"
+                            android:inputType="textCapCharacters"
+                            android:letterSpacing="0.1"
+                            android:maxLength="3"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_subtitle"
+                            android:textStyle="bold" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="—"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_headline"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPlateSuffix"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="1234"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPlateSuffix"
+                            android:layout_width="match_parent"
+                            android:layout_height="62dp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:letterSpacing="0.1"
+                            android:maxLength="4"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_subtitle"
+                            android:textStyle="bold" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--  -->
+                <!-- REQUIREMENTS SECTION                     -->
+                <!--  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp">
+
+                    <View
+                        android:id="@+id/indicatorRequirements"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/indicator_done" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:text="Equipment"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Equipment you have on your truck"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_body" />
+
+                <!-- 2-column requirement checkboxes grid -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRequirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+                <!--  -->
+                <!-- COMPANY (locked)                        -->
+                <!--  -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:text="Company"
+                    android:textColor="@color/sysu_red"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Company from your driver profile"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_body" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_company_readonly"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="18dp">
+
+                    <EditText
+                        android:id="@+id/etCompany"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/atkinson_hyperlegible_regular"
+                        android:hint="Company is not set in your profile"
+                        android:inputType="textCapWords"
+                        android:maxLength="100"
+                        android:singleLine="true"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_body" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <!--  -->
+    <!-- FLOATING BOTTOM ACTION + STATUS BAR               -->
+    <!--  -->
+    <LinearLayout
+        android:id="@+id/bottomActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="@dimen/elevation_floating"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!--  Section completion status  -->
+        <LinearLayout
+            android:id="@+id/progressStatusBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp">
+
+            <!-- Helper indicator pill -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/pillHelper"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/indicator_empty" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Helper"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_micro" />
+            </LinearLayout>
+
+            <!-- Connector line 1 -->
+            <View
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="@color/border" />
+
+            <!-- Truck indicator pill -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/pillTruck"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/indicator_done" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Truck"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_micro" />
+            </LinearLayout>
+
+            <!-- Connector line 2 -->
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="@color/border" />
+
+            <!-- Requirements indicator pill -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/pillRequirements"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/indicator_done" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Equipment"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_micro" />
+            </LinearLayout>
+
+            <!-- Connector line 3 -->
+            <View
+                android:id="@+id/line3"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="@color/border" />
+
+            <!-- Plate indicator pill -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/pillPlate"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/indicator_empty" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:text="Plate"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_micro" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--  Button row  -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:text="@string/trip_confirm_label"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_body"
+            android:textStyle="bold"
+            app:backgroundTint="@color/sysu_red"
+            app:cornerRadius="@dimen/corner_radius_button"
+            app:elevation="0dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-46dp"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

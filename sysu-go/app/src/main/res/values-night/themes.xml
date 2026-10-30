@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Same white theme for both modes -->
+    <style name="Base.Theme.Go" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/sysu_red</item>
+        <item name="colorPrimaryVariant">@color/sysu_red</item>
+        <item name="colorSecondary">@color/sysu_gold</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowBackground">@color/background_white</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible</item>
+        <item name="fontFamily">@font/atkinson_hyperlegible</item>
+    </style>
+
+    <style name="Theme.Go" parent="Base.Theme.Go" />
+</resources>

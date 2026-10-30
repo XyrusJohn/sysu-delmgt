@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/corner_radius_pill"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="18dp"
+            android:background="@drawable/bg_shipment_skeleton" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_shipment_skeleton" />
+
+        <View
+            android:layout_width="160dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_shipment_skeleton" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_shipment_skeleton" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

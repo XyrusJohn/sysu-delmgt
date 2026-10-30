@@ -1,0 +1,69 @@
+# Gradle
+.gradle/
+build/
+app/build/
+app/bin/
+
+# IDE
+.idea/
+*.iml
+/local.properties
+.DS_Store
+
+# Java / Android
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Environment (contains secrets)
+.env
+.env.*
+!.env.example
+!.env.container.example
+
+# Firebase (DO NOT COMMIT — contains private key)
+backend/config/serviceAccountKey.json
+
+# Google Services (contains Firebase credentials)
+app/google-services.json
+
+# Logs
+*.log
+backend/*.log
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Node.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Claude Code
+free-claude-code/
+.claude/
+
+# Python (for any future scripts)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Misc
+*.swp
+*.swo
+*~
+
+# Session summary markdown files
+*_SUMMARY.md
+# Service account credentials: never track private-key exports
+**/service-account*.json
+**/serviceAccount*.json
+**/*credentials*.json
+*.pem
+*.key
+
+# Legacy local credential export; never track
+backend/firebase-temp.env

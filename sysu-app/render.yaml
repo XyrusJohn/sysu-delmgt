@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: sysu-app-staging-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: staging
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health/ready
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: SAP_URL
+        sync: false
+      - key: TRUST_PROXY
+        value: "1"

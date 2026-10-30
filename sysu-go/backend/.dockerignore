@@ -1,0 +1,23 @@
+# Runtime-only context for backend-directory builds.
+**
+!package.json
+!package-lock.json
+!server.js
+!constants/
+!constants/**/*.js
+!config/
+!config/**/*.js
+!controller/
+!controller/**/*.js
+!controllers/
+!controllers/**/*.js
+!routes/
+!routes/**/*.js
+!models/
+!models/**/*.js
+!utils/
+!utils/**/*.js
+!services/
+!services/**/*.js
+!middleware/
+!middleware/**/*.js

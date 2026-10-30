@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingBottom="32dp">
+
+    <!-- Drag handle bar -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/bg_drag_handle" />
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="22dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="4dp"
+        android:text="DELIVERY STATUS"
+        android:textColor="@color/sysu_red"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        android:letterSpacing="0.08"
+        android:fontFamily="@font/atkinson_hyperlegible_bold" />
+
+    <!-- OBD info — shown so driver knows which item they're updating -->
+    <TextView
+        android:id="@+id/tvObdInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="22dp"
+        android:paddingBottom="16dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_label"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:text="OBD Number • Customer Name" />
+
+    <!-- Hairline divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_marginHorizontal="22dp"
+        android:background="@color/surface2" />
+
+    <!-- Radio group — exactly 3 choices, no default selection -->
+    <RadioGroup
+        android:id="@+id/rgStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="22dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <RadioButton
+            android:id="@+id/rbDelivered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="@string/pod_status_delivered"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:fontFamily="@font/atkinson_hyperlegible_regular"
+            android:button="@null"
+            android:drawableEnd="@drawable/radio_indicator"
+            android:drawablePadding="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/surface2" />
+
+        <RadioButton
+            android:id="@+id/rbRejected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="@string/pod_status_rejected"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:fontFamily="@font/atkinson_hyperlegible_regular"
+            android:button="@null"
+            android:drawableEnd="@drawable/radio_indicator"
+            android:drawablePadding="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/surface2" />
+
+        <RadioButton
+            android:id="@+id/rbDeliveredWithRejection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="@string/pod_status_delivered_rejection"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:fontFamily="@font/atkinson_hyperlegible_regular"
+            android:button="@null"
+            android:drawableEnd="@drawable/radio_indicator"
+            android:drawablePadding="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical" />
+
+    </RadioGroup>
+
+    <!-- CTA Button — disabled until a radio is selected -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConfirmStatus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/pod_confirm_take_photo"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_button"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:enabled="false"
+        android:alpha="0.4"
+        app:elevation="4dp"
+        app:strokeWidth="0dp"
+        app:backgroundTint="@color/sysu_red"
+        app:cornerRadius="@dimen/corner_radius_button" />
+
+    <!-- Helper text below button -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="A photo will be captured after confirming"
+        android:textColor="@color/text_muted"
+        android:textSize="@dimen/text_size_caption"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+</LinearLayout>

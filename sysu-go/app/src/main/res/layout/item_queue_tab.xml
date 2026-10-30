@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingHorizontal="4dp"
+    android:paddingVertical="4dp">
+
+    <!-- Full-width card matching the LinearLayout template user provided -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius_pill"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="16dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp">
+
+            <!-- Left icon block -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_circle_light_red"
+                    android:backgroundTint="@color/sysu_red"
+                    android:alpha="0.15" />
+                <ImageView
+                    android:id="@+id/ivTabTicketIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ticket_1"
+                    app:tint="@color/sysu_red" />
+            </FrameLayout>
+
+            <!-- Text block + status dot -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="14dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvTabLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Assignment"
+                        android:textSize="@dimen/text_size_subtitle"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:textStyle="bold" />
+
+                    <!-- Status dot (green=active, gold=waiting, muted=none) -->
+                    <View
+                        android:id="@+id/vTabStatusDot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_status_dot_green"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTabSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="@dimen/text_size_label"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Chevron -->
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/text_muted" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

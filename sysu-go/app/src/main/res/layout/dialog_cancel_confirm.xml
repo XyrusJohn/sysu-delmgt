@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Cancel Queue — Step 1: Soft confirmation (enterprise v2)
+
+  Matches unified dialog design language:
+  glass-pill icon circle → title → message → divider → 2 buttons.
+  Amber icon signals caution, not alarm.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:elevation="10dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp"
+    android:paddingHorizontal="28dp">
+
+    <!-- Amber warning icon — glass circle tinted to match intent -->
+    <ImageView
+        android:id="@+id/ivDialogIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_dialog_icon_circle"
+        android:backgroundTint="@color/sysu_amber"
+        android:src="@drawable/ic_dialog_alert"
+        android:contentDescription="Warning"
+        android:padding="10dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_queue_title_1"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_body"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:gravity="center"
+        android:layout_marginBottom="6dp" />
+
+    <!-- Message body -->
+    <TextView
+        android:id="@+id/tvDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_queue_msg_1"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_label"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="22dp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border"
+        android:layout_marginBottom="18dp" />
+
+    <!-- Action buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Secondary: Dismiss -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel_1"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:text="@string/cancel_queue_btn_cancel_1"
+            android:textSize="@dimen/text_size_button"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/corner_radius_button"
+            app:strokeColor="@color/border"
+            android:textColor="@color/text_secondary" />
+
+        <!-- Primary: Confirm leave -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_confirm_1"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="@string/cancel_queue_btn_confirm_1"
+            android:textSize="@dimen/text_size_button"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/sysu_red"
+            app:cornerRadius="@dimen/corner_radius_button" />
+    </LinearLayout>
+
+</LinearLayout>

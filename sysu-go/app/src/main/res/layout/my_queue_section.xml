@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- 1. Red Banner -->
+    <FrameLayout
+        android:id="@+id/queueNumberBanner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/sysu_red"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/sectionCircleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/tvQueueNumberLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.75"
+                android:letterSpacing="0.05"
+                android:text="QUEUE NUMBER"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_caption" />
+
+            <TextView
+                android:id="@+id/tvQueueNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_queue_number"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSectionQueueStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:alpha="0.85"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_caption" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- 2. Shipment Details Card (overlaps banner bottom by 20dp) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="-20dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/corner_radius_card"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/queueNumberBanner">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <!-- Shipment Number row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SHIPMENT NUMBER"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvShipmentNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="—"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Plate No. row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PLATE NO."
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPlateNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="—"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Truck Type row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TRUCK TYPE"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTruckType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="—"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Helper row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="HELPER"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHelper"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="—"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Customer Requirements section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:letterSpacing="0.04"
+                    android:text="CUSTOMER REQUIREMENTS"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <!-- 2-column grid for requirements -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Column 1 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Aircon row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_aircon"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Aircon"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqAircon"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!-- Reflect. Vest row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_vest"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Reflect. Vest"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqVest"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!-- Headcap row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_headcap"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Headcap"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqHeadcap"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Column 2 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Safety Shoes row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_safety_shoes"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Safety Shoes"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqSafetyShoes"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!-- Pants row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_pants"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Pants"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqPants"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!-- Closed Shoes row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_req_shoes"
+                                app:tint="@color/text_secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Closed Shoes"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="@dimen/text_size_caption" />
+
+                            <TextView
+                                android:id="@+id/tvReqClosedShoes"
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="—"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Planned Delivery row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PLANNED DELIVERY"
+                    android:textColor="@color/text_muted"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDeliveryDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="—"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 3. OBD Items Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardObdItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="14dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/corner_radius_card"
+        app:cardElevation="3dp"
+        app:layout_constraintTop_toBottomOf="@id/cardDetails">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3.5dp"
+                android:background="@color/sysu_red" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:letterSpacing="0.07"
+                    android:text="OBD  ITEMS"
+                    android:textColor="@color/sysu_red"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvObdCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_obd_count_pill"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="3.5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_caption"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="Open OBD items"
+                    android:src="@drawable/ic_expand_more"
+                    app:tint="@color/text_muted" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 4. Guard Verification Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/guardVerificationSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="14dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/corner_radius_card"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardObdItems">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Guard Verification"
+                android:textColor="@color/sysu_red"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSelectGuard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_card"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/text_muted"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="14dp">
+
+                    <TextView
+                        android:id="@+id/tvGuardLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.08"
+                        android:text="SELECT GUARD"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_muted"
+                        android:textSize="@dimen/text_size_caption"
+                        app:layout_constraintEnd_toStartOf="@id/ivGuardChevron"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvSelectedGuardName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/select_guard"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="@dimen/text_size_body"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ivGuardChevron"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvGuardLabel" />
+
+                    <ImageView
+                        android:id="@+id/ivGuardChevron"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_expand_more"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/text_muted" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSign"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="14dp"
+                android:text="SIGN"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_size_label"
+                app:backgroundTint="@color/sysu_red"
+                app:cornerRadius="@dimen/corner_radius_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerify"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="8dp"
+                android:text="VERIFY &amp; SEND"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_size_label"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/corner_radius_button" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 5. Floating VIEW VERIFICATION Pill -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardFloatingViewVerification"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/sysu_red"
+        app:cardCornerRadius="@dimen/corner_radius_pill"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="✓"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_label"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.08"
+                android:text="VIEW VERIFICATION"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

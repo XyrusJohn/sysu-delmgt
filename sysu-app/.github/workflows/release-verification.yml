@@ -1,0 +1,42 @@
+name: Release verification
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: release-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  local-release-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_RELEASE_TARGET: local
+      VITE_API_URL: http://127.0.0.1:8080
+      VITE_SOCKET_URL: http://127.0.0.1:8080
+      VITE_DRIVER_TRACKING_URL: http://127.0.0.1:8080
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - run: npm ci
+      - run: npm ci --prefix backend
+      - run: npm ci --prefix frontend
+      - run: npm run lint
+      - run: npm test --prefix backend
+      - run: npm test --prefix frontend
+      - run: npm run build:e2e --prefix frontend
+      - name: Build minimal production container
+        run: docker build --tag sysu-app:verification .
+      - name: Container user and secret inventory
+        run: |
+          test "$(docker inspect --format '{{.Config.User}}' sysu-app:verification)" = node
+          docker run --rm --entrypoint sh sysu-app:verification -c 'test ! -d /app/tests && test -z "$(find /app -type f \( -name .env -o -name service-account.json -o -name firebase-qr.json -o -name "*.pem" -o -name "*.key" \) -print)"'

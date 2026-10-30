@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Frosted Glass Badge: In Queue — frosted surface tinted with deep blue -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Translucent frosted glass surface -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="#E6FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- State tint: translucent blue overlay — top-down gradient, fades to clear -->
+    <item
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="18dp" />
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#261565C0"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Luminescent top-edge ring -->
+    <item
+        android:left="0.75dp"
+        android:right="0.75dp"
+        android:top="0.75dp"
+        android:bottom="0.75dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="19.5dp" />
+            <stroke
+                android:width="1dp"
+                android:color="#30FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

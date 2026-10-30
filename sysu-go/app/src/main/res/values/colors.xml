@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#008000</color>
+    <color name="red">#FF0000</color>
+
+    <!-- White Theme Backgrounds -->
+    <color name="background_white">#FFFFFFFF</color>
+    <color name="background_primary">#FFFFFFFF</color>
+    <color name="surface">#F5F5F5</color>
+    <color name="surface2">#EEEEEE</color>
+    <color name="card_bg">#FFFFFF</color>
+
+    <!-- Borders & Dividers -->
+    <color name="border">#E0E0E0</color>
+    <color name="divider">#F0F0F0</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_muted">#999999</color>
+    <color name="text_tertiary">#BBBBBB</color>
+
+    <!-- SYSU Brand -->
+    <color name="sysu_red">#c8102e</color>
+    <color name="sysu_gold">#f5a623</color>
+
+    <!-- Transit / Status -->
+    <color name="sysu_green">#00C853</color>
+    <color name="sysu_blue">#1565C0</color>
+    <color name="transit_green">#4CAF50</color>
+    <color name="transit_green_bg">#E8F5E9</color>
+    <color name="transit_amber">#FFF3E0</color>
+    <color name="transit_amber_dark">#FF9800</color>
+
+    <!-- Disabled states -->
+    <color name="gray_disabled">#B0B0B0</color>
+
+    <!-- Amber / pending status -->
+    <color name="amber_pill_bg">#FFF3E0</color>
+    <color name="text_amber">#E65100</color>
+    <color name="sysu_amber">#FF9800</color>
+
+    <!-- Frosted glass surface colors -->
+    <color name="frosted_blue_bg">#E6EAF2FB</color>
+
+    <!-- Green / Delivered status -->
+    <color name="green_pill_bg">#E8F5E9</color>
+    <color name="text_green">#2E7D32</color>
+
+    <!-- Red / Rejected status -->
+    <color name="red_pill_bg">#FFEBEE</color>
+    <color name="text_red">#C62828</color>
+
+    <!-- Orange / Delivered w/ Rejection status -->
+    <color name="orange_pill_bg">#FFE0B2</color>
+    <color name="orange_badge_bg">#FF6D00</color>
+    <color name="text_orange">#E65100</color>
+
+    <!-- Frosted glass badge tokens -->
+    <color name="badge_glass_surface">#E6FFFFFF</color>
+    <color name="badge_top_reflection">#40FFFFFF</color>
+    <color name="badge_edge_luminosity">#30FFFFFF</color>
+
+    <!-- Status-specific frosted tints — 20% opacity for readyBadge -->
+    <color name="frosted_green">#334CAF50</color>
+    <color name="frosted_red">#33C8102E</color>
+    <color name="frosted_amber">#33FF9800</color>
+    <color name="frosted_blue">#332196F3</color>
+    <color name="frosted_gold">#33F5A623</color>
+    <color name="frosted_white">#33FFFFFF</color>
+
+    <!-- Status-specific frosted tints — state color at 12% opacity over glass surface -->
+    <color name="badge_in_transit_bg">#1A4CAF50</color>
+    <color name="badge_assigned_bg">#1AFF9800</color>
+    <color name="badge_in_queue_bg">#1A1565C0</color>
+    <color name="badge_not_in_queue_bg">#1A999999</color>
+
+    <!-- Status text colors (enterprise-grade contrast on frosted glass) -->
+    <color name="status_in_transit">#2E7D32</color>
+    <color name="status_transit_green">#1B5E20</color>
+    <color name="status_assigned">#E65100</color>
+    <color name="status_in_queue">#0D47A1</color>
+    <color name="status_not_in_queue">#757575</color>
+    <!-- New (2026-08-10): connectivity-aware badge states -->
+    <color name="status_online">#2E7D32</color>
+    <color name="status_offline">#C62828</color>
+    <color name="status_returning_to_base">#0D47A1</color>
+
+</resources>

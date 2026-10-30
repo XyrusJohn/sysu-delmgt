@@ -1,0 +1,2 @@
+--provider node
+NODE_VERSION=20

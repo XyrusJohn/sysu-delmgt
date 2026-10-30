@@ -1,0 +1,7 @@
+node_modules/
+.env
+.env.*
+firebase-qr.json
+*service-account*.json
+*.log
+.local-mysql/

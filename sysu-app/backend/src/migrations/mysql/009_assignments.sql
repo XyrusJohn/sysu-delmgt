@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS app_sap_assignments (
+    dispatch_key VARCHAR(128) NOT NULL PRIMARY KEY,
+    driver_id CHAR(36) NOT NULL,
+    queue_id VARCHAR(128) NOT NULL,
+    driver_name VARCHAR(200) NOT NULL DEFAULT '',
+    truck_plate VARCHAR(64) NOT NULL DEFAULT '',
+    truck_company VARCHAR(200) NOT NULL DEFAULT '',
+    truck_type VARCHAR(64) NOT NULL,
+    line_items JSON NOT NULL,
+    assigned_at_ms BIGINT UNSIGNED NOT NULL,
+    assigned_by CHAR(36) NOT NULL,
+    sap_source_fetched_at_ms BIGINT UNSIGNED NOT NULL,
+    trip_status VARCHAR(32) NOT NULL DEFAULT 'assigned',
+    data JSON NOT NULL,
+    updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    KEY idx_app_sap_assignments_driver_status (driver_id, trip_status),
+    KEY idx_app_sap_assignments_queue (queue_id),
+    CONSTRAINT fk_app_sap_assignments_driver FOREIGN KEY (driver_id) REFERENCES app_auth_users (public_id),
+    CONSTRAINT fk_app_sap_assignments_queue FOREIGN KEY (queue_id) REFERENCES app_queue_entries (id),
+    CONSTRAINT fk_app_sap_assignments_actor FOREIGN KEY (assigned_by) REFERENCES app_auth_users (public_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

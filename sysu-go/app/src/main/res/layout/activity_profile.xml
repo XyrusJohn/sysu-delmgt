@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white">
+
+    <!--  Top Bar  -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/sysu_red"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/my_profile"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_title"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:layout_marginEnd="48dp" />
+    </LinearLayout>
+
+    <!--  Profile Header — brand red with floating circles  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileHeader"
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:background="@color/sysu_red"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
+
+        <!-- Decorative floating circles -->
+        <FrameLayout
+            android:id="@+id/circleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+        <!-- Driver initial avatar -->
+        <FrameLayout
+            android:id="@+id/avatarContainer"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bg_profile_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAvatarInitial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/avatarContainer"
+            app:layout_constraintBottom_toBottomOf="@id/avatarContainer"
+            app:layout_constraintStart_toStartOf="@id/avatarContainer"
+            app:layout_constraintEnd_toEndOf="@id/avatarContainer" />
+
+        <!-- Driver Name -->
+        <TextView
+            android:id="@+id/tvDriverName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_subtitle"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:maxWidth="280dp"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/avatarContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- MaterialCardView wrapper with transparent card, drawable handles all frosted looks -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/statusBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            android:background="@drawable/bg_badge_frosted_not_in_queue"
+            app:layout_constraintTop_toBottomOf="@id/tvDriverName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:id="@+id/tvStatusBadgeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not in queue"
+                    android:textColor="@color/status_not_in_queue"
+                    android:textSize="@dimen/text_size_micro"
+                    android:textAllCaps="false"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold" />
+
+                <TextView
+                    android:id="@+id/tvAssignedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text=""
+                    android:textColor="@color/text_secondary"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/assignedCountSkeleton"
+                    android:layout_width="88dp"
+                    android:layout_height="9dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_shipment_skeleton"
+                    android:importantForAccessibility="no"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  Content Scroll  -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/profileHeader"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
+
+            <!--
+                 SECTION: Personal Information
+                  -->
+
+            <!-- Section label row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/sysu_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personal Information"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_label"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.01" />
+            </LinearLayout>
+
+            <!-- White surface card with accent left bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_section_card"
+                android:paddingVertical="4dp"
+                android:clipToOutline="true">
+
+                <!-- Left accent bar -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sysu_red" />
+
+                <!-- Fields column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="16dp">
+
+                    <!-- Full Name -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Full Name"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:letterSpacing="0.02"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                        <TextView
+                            android:id="@+id/tvFullName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="14dp"
+                        android:background="@color/divider" />
+
+                    <!-- Phone -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Number"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:letterSpacing="0.02"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                        <TextView
+                            android:id="@+id/tvPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--
+                 SECTION: Truck Information
+                  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/sysu_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Truck Information"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_label"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_section_card"
+                android:paddingVertical="4dp"
+                android:clipToOutline="true">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sysu_red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="16dp">
+
+                    <!-- Company -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trucking Company"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:letterSpacing="0.02"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                        <TextView
+                            android:id="@+id/tvCompany"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold"
+                            android:letterSpacing="0.05" />
+                    </LinearLayout>
+
+                    <!-- Customer Requirements — shown below company -->
+                    <LinearLayout
+                        android:id="@+id/requirementsSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="14dp"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/divider_height"
+                            android:layout_marginBottom="14dp"
+                            android:background="@color/divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Customer Requirements"
+                                android:textColor="@color/text_muted"
+                                android:textSize="12sp"
+                                android:textAllCaps="false"
+                                android:letterSpacing="0.02"
+                                android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                            <ImageButton
+                                android:id="@+id/btnEditRequirements"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_edit"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="Edit requirements"
+                                app:tint="@color/sysu_red" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvRequirements"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"
+                            android:nestedScrollingEnabled="false" />
+
+                        <LinearLayout
+                            android:id="@+id/requirementsSkeleton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:importantForAccessibility="noHideDescendants"
+                            android:visibility="gone">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="14dp"
+                                android:background="@drawable/bg_shipment_skeleton" />
+
+                            <View
+                                android:layout_width="200dp"
+                                android:layout_height="14dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bg_shipment_skeleton" />
+
+                            <View
+                                android:layout_width="160dp"
+                                android:layout_height="14dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bg_shipment_skeleton" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--
+                 SECTION: App Information
+                  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/sysu_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="App Information"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_label"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_section_card"
+                android:paddingVertical="4dp"
+                android:clipToOutline="true">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sysu_red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="App Version"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:letterSpacing="0.02"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                        <TextView
+                            android:id="@+id/tvAppVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--
+                 SECTION: App Permissions & Background Tracking
+                  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/sysu_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Permissions &amp; Background Mode"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_label"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_section_card"
+                android:paddingVertical="4dp"
+                android:clipToOutline="true">
+
+                <View
+                    android:id="@+id/permSectionAccent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/transit_green" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="16dp">
+
+                    <TextView
+                        android:id="@+id/tvPermOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status ng Background Tracking:"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0.02"
+                        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                    <!-- Location Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="GPS &amp; Live Location"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                        <TextView
+                            android:id="@+id/tvStatusPermLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active"
+                            android:textColor="@color/text_green"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/divider" />
+
+                    <!-- Background / Battery Optimization Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Background (No Sleep / Battery)"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                        <TextView
+                            android:id="@+id/tvStatusPermBattery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active"
+                            android:textColor="@color/text_green"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/divider" />
+
+                    <!-- Notifications Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="System Notifications"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                        <TextView
+                            android:id="@+id/tvStatusPermNotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active"
+                            android:textColor="@color/text_green"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/divider" />
+
+                    <!-- Camera Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Camera &amp; QR / POD Scan"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                        <TextView
+                            android:id="@+id/tvStatusPermCamera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active"
+                            android:textColor="@color/text_green"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+                    </LinearLayout>
+
+                    <!-- App Info Settings Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenAppInfo"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="14dp"
+                        android:text="I-grant o Buksan sa App Settings"
+                        android:textColor="@color/sysu_red"
+                        android:textSize="@dimen/text_size_caption"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:textAllCaps="false"
+                        app:cornerRadius="@dimen/corner_radius_button"
+                        app:backgroundTint="#1AC8102E"
+                        app:icon="@drawable/ic_dialog_confirm"
+                        app:iconTint="@color/sysu_red"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSystemDiagnostics"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:text="System diagnostics"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_caption"
+                        android:fontFamily="@font/atkinson_hyperlegible_bold"
+                        android:textAllCaps="false"
+                        app:cornerRadius="@dimen/corner_radius_button"
+                        app:icon="@drawable/ic_dialog_confirm"
+                        app:iconTint="@color/sysu_red"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--
+                 SECTION: Tutorials
+                  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/sysu_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tutorials"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_label"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_section_card"
+                android:paddingVertical="4dp"
+                android:clipToOutline="true">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sysu_red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:paddingHorizontal="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Show tutorials"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_label"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Helpful tips on your first visit"
+                            android:textColor="@color/text_muted"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/atkinson_hyperlegible_regular" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchTutorials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        app:thumbTint="@color/white"
+                        app:trackTint="@color/sysu_red" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--
+                 LOGOUT
+                  -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/divider" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="@string/logout"
+                android:textColor="@color/sysu_red"
+                android:textSize="@dimen/text_size_body"
+                android:fontFamily="@font/atkinson_hyperlegible_bold"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/corner_radius_button"
+                app:strokeColor="@color/sysu_red"
+                app:strokeWidth="1.5dp"
+                app:rippleColor="#20c8102e"
+                app:elevation="0dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

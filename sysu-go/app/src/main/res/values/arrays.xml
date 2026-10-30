@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="truck_companies">
+        <item>LALAMOVE PHILIPPINES INC</item>
+        <item>SCHENKER DISTRIBUTION SOLUTIONS,</item>
+        <item>ZBZ GLOBAL LOGISTICS (PHILS) INC.</item>
+        <item>2GO LOGISTICS INC</item>
+        <item>BCJ DELIVERY SERVICES</item>
+        <item>DANIKO TRUCKING SERVICES</item>
+        <item>EDMONTON TRUCKING SERVICES</item>
+        <item>F. DRILON TRUCKING SERVICES</item>
+        <item>F2 LOGISTICS PHILIPPINES INC.</item>
+        <item>FAST LOGISTICS CORPORATION</item>
+        <item>FASTCARGO LOGISTICS CORPORATION</item>
+        <item>JONTHER CORPORATION</item>
+        <item>KE ENTERPRISES</item>
+        <item>KENJITSU TRANSPORTER CORPORATION</item>
+        <item>LUBAY DELIVERY SERVICE</item>
+        <item>METRO COMBINED LOGISTICS SOLUTIONS INC</item>
+        <item>MISHABELA LOGISTICS SERVICES</item>
+        <item>PHOEMIROLD TRANSPORT</item>
+        <item>R.D. CASTILLO TRUCKING</item>
+        <item>RL TRUCKING SERVICES</item>
+        <item>TRITEK REVERSE LOGISTICS CORP.</item>
+        <item>SAFEXPRESS LOGISTICS INC.</item>
+        <item>RICARDO AND ANNIE TRUCKING</item>
+        <item>SHIPA TRANSPORT</item>
+        <item>MC3 CARMONA TRUCKING SERVICES</item>
+        <item>DAPH TRUCKING SERVICES</item>
+        <item>CK\'5 TRUCKING SERVICES</item>
+        <item>GRAMORE TRUCKING SERVICES</item>
+        <item>EXCELLENT FREIGHT INC.</item>
+        <item>JUANCAT DELIVERY SERVICES</item>
+        <item>VDS DELIVERY SERVICES</item>
+        <item>ALOYSIANZ TRUCKING SERVICES</item>
+        <item>LITE EXPRESS INT\'L INC</item>
+        <item>RL1 TRUCKING SERVICES</item>
+        <item>ST. CHRISTOPHER FORWARDERS OPC</item>
+        <item>FASTLOGIC CORP.</item>
+        <item>ROAR DELIVERY SERVICES</item>
+        <item>MHETHZ TRUCKING SERVICES</item>
+        <item>SHIASTINE LOGISTICS SERVICES</item>
+        <item>J.H. CAROLINO DELIVERY SERVICES</item>
+        <item>L3V LOGISTICS SERVICES</item>
+        <item>DUSAU TRUCKING SERVICES</item>
+        <item>QUINN&amp;QUIAA TRUCKING SERVICES</item>
+        <item>EZEKIEL DELIVERY SERVICES</item>
+        <item>MSAU TRANSPORT SERVICES</item>
+        <item>WE\'VELINK SERVICES INCORPORATED</item>
+        <item>OTHER</item>
+    </string-array>
+</resources>

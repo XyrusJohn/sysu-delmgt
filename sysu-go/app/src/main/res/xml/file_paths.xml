@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    FileProvider paths for camera intent (POD photo capture).
+    Allows the camera app to write to app-private external storage.
+    ${applicationId}.fileprovider authority must match the Intent source in
+    MyTripActivity.launchCameraIntent().
+-->
+<paths>
+    <!-- getExternalFilesDir(Environment.DIRECTORY_PICTURES) used by createImageFile() -->
+    <external-files-path
+        name="pod_photos"
+        path="Pictures" />
+    <!-- Fallback: internal cache -->
+    <cache-path
+        name="pod_cache"
+        path="." />
+</paths>

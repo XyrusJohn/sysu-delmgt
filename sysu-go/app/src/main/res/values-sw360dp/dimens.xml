@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         SMALL TIER — Spacing (360–375px, ~640–667px, 2× DPR)
+         Devices: iPhone SE, Xiaomi Redmi, budget Androids
+         Min 14px body, 12px caption.
+         Padding min 12dp horizontal on containers.
+         TEST HERE FIRST — if it fits here, it fits everywhere.
+         ============================================================ -->
+    <dimen name="screen_padding_horizontal">16dp</dimen>
+    <dimen name="screen_padding_vertical">16dp</dimen>
+    <dimen name="section_spacing">12dp</dimen>
+    <dimen name="card_margin_horizontal">16dp</dimen>
+    <dimen name="card_spacing">10dp</dimen>
+    <dimen name="form_spacing">12dp</dimen>
+    <dimen name="obd_row_height">44dp</dimen>
+    <dimen name="obd_header_padding_vert">8dp</dimen>
+    <dimen name="obd_header_padding_horiz">12dp</dimen>
+    <dimen name="obd_padding_horizontal">12dp</dimen>
+    <dimen name="obd_col_header_padding_vert">8dp</dimen>
+    <dimen name="obd_col_header_padding_horiz">12dp</dimen>
+    <dimen name="obd_empty_padding">20dp</dimen>
+
+    <!-- ============================================================
+         Tier B — Text sizes (sp)
+         Per-research: body=14-16sp | caption=12sp | heading=18-20sp
+         ============================================================ -->
+    <dimen name="text_size_display">52sp</dimen>
+    <dimen name="text_size_queue_number">52sp</dimen>
+    <dimen name="text_size_title_large">24sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <dimen name="text_size_subtitle">16sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_label">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_button">14sp</dimen>
+    <dimen name="text_size_headline">20sp</dimen>
+    <dimen name="text_size_input">16sp</dimen>
+    <dimen name="text_size_tab">13sp</dimen>
+
+    <!-- ============================================================
+         Tier C — Structural
+         ============================================================ -->
+    <dimen name="corner_radius_small">6dp</dimen>
+    <dimen name="corner_radius_card">16dp</dimen>
+    <dimen name="corner_radius_pill">20dp</dimen>
+    <dimen name="corner_radius_button">10dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_floating">4dp</dimen>
+    <dimen name="elevation_banner">0dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="btn_height">52dp</dimen>
+    <dimen name="input_height">52dp</dimen>
+    <dimen name="helper_card_height">56dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="obd_accent_bar_width">3dp</dimen>
+    <dimen name="obd_red_bar_height">3.5dp</dimen>
+    <dimen name="drag_handle_width">32dp</dimen>
+    <dimen name="drag_handle_height">4dp</dimen>
+    <dimen name="otp_digit_size">48dp</dimen>
+    <dimen name="banner_height">220dp</dimen>
+    <dimen name="banner_card_overlap">140dp</dimen>
+    <dimen name="header_height">56dp</dimen>
+    <dimen name="count_pill_pad_h">8dp</dimen>
+    <dimen name="count_pill_pad_v">3dp</dimen>
+    <dimen name="topbar_height">56dp</dimen>
+    <dimen name="status_badge_padding_horiz">8dp</dimen>
+    <dimen name="status_badge_padding_vert">3dp</dimen>
+    <dimen name="status_dot_size">8dp</dimen>
+    <dimen name="accent_bar_width">3dp</dimen>
+    <dimen name="accent_bar_height">48dp</dimen>
+    <dimen name="icon_circle_size">48dp</dimen>
+    <dimen name="icon_size_small">20dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="screen_padding_bottom">16dp</dimen>
+    <dimen name="text_max_width">240dp</dimen>
+    <dimen name="btn_corner_radius">12dp</dimen>
+    <dimen name="scan_overlay_size">220dp</dimen>
+    <dimen name="scan_btn_size">90dp</dimen>
+</resources>

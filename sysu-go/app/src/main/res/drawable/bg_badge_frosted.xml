@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Frosted glass badge surface — layered shape draws:
+     1. translucent rounded rect (the glass)
+     2. top-half highlight strip (luminescent top edge) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base frosted surface: translucent white rounded rect -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@color/badge_glass_surface" />
+        </shape>
+    </item>
+
+    <!-- Highlight strip: thin white gradient at very top of pill -->
+    <item
+        android:left="1dp"
+        android:right="1dp"
+        android:bottom="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="@color/badge_top_reflection"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Luminescent thin line: bright top border ring -->
+    <item
+        android:left="0.5dp"
+        android:right="0.5dp"
+        android:top="0.5dp"
+        android:bottom="0.5dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="0.75dp"
+                android:color="@color/badge_edge_luminosity" />
+        </shape>
+    </item>
+
+</layer-list>

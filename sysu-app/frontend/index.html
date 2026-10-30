@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SYSU International Inc.</title>
+    <link rel="icon" type="image/png" href="/SYSU.png?v=newIcon123" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style/main.css" />
+  </head>
+  <body
+    class="font-body bg-sysu-dark flex items-center justify-center min-h-screen cursor-default select-none overflow-y-auto sm:overflow-hidden relative"
+  >
+    <!-- Grain Overlay -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[1000] opacity-45 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E')]"
+    ></div>
+
+    <div
+      class="w-full max-w-[1080px] h-screen sm:h-[92vh] max-h-none sm:max-h-[680px] flex rounded-none sm:rounded-3xl overflow-hidden shadow-none sm:shadow-[0_60px_120px_rgba(0,0,0,0.7),0_0_0_0.5px_theme(colors.sysu-border)] relative animate-[fadeIn_0.5s_ease_both] z-10"
+    >
+      <!-- ══════════ LEFT PANEL ══════════ -->
+      <div
+        class="hidden lg:block flex-[1.15] relative overflow-hidden bg-sysu-dark"
+      >
+        <!-- Deep space bg -->
+        <div
+          class="absolute inset-0"
+          style="
+            background:
+              radial-gradient(
+                ellipse 70% 55% at 50% 85%,
+                rgba(200, 16, 46, 0.22) 0%,
+                transparent 65%
+              ),
+              radial-gradient(
+                ellipse 50% 40% at 15% 20%,
+                rgba(60, 10, 10, 0.5) 0%,
+                transparent 65%
+              ),
+              radial-gradient(
+                ellipse 80% 80% at 80% 50%,
+                rgba(10, 5, 20, 0.8) 0%,
+                transparent 70%
+              ),
+              linear-gradient(160deg, #060608 0%, #0d0508 55%, #060305 100%);
+          "
+        ></div>
+
+        <!-- Animated SVG Map Canvas -->
+        <svg
+          class="absolute inset-0 z-[1]"
+          viewBox="0 0 700 680"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="grid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="rgba(255,255,255,0.03)"
+                stroke-width="0.5"
+              />
+            </pattern>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="3"
+                result="blur"
+              />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <filter
+              id="truck-glow"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="5"
+                result="blur"
+              />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+          <rect width="700" height="680" fill="url(#grid)" />
+
+          <g
+            opacity="0.12"
+            stroke="rgba(255,255,255,0.5)"
+            stroke-width="1.5"
+            fill="none"
+          >
+            <path
+              d="M200 80 Q320 60 440 80 Q560 120 580 250 Q590 380 540 480 Q480 560 380 580 Q280 590 200 560 Q120 520 100 420 Q80 300 100 200 Q130 110 200 80Z"
+            />
+            <path
+              d="M340 40 Q480 80 560 200 Q600 310 580 440 Q540 540 440 590"
+            />
+            <line x1="0" y1="200" x2="700" y2="180" />
+            <line x1="0" y1="340" x2="700" y2="320" />
+            <line x1="0" y1="480" x2="700" y2="460" />
+            <line x1="150" y1="0" x2="140" y2="680" />
+            <line x1="350" y1="0" x2="340" y2="680" />
+            <line x1="550" y1="0" x2="540" y2="680" />
+          </g>
+
+          <path
+            d="M200 450 Q220 380 280 320 Q330 270 400 240 Q460 220 520 200"
+            fill="none"
+            stroke="rgba(200,16,46,0.5)"
+            stroke-width="2"
+            stroke-dasharray="8 6"
+            filter="url(#glow)"
+            class="animate-[dash-flow_1.8s_linear_infinite]"
+            style="stroke-dashoffset: 0"
+          />
+          <path
+            d="M200 450 Q220 440 260 430 Q320 415 370 400 Q440 380 490 360"
+            fill="none"
+            stroke="rgba(245,166,35,0.4)"
+            stroke-width="1.5"
+            stroke-dasharray="6 5"
+            class="animate-[dash-flow_2.2s_linear_infinite]"
+            style="stroke-dashoffset: 0"
+          />
+          <path
+            d="M200 450 Q240 470 300 480 Q380 490 450 475 Q510 460 550 440"
+            fill="none"
+            stroke="rgba(79,142,247,0.35)"
+            stroke-width="1.5"
+            stroke-dasharray="6 5"
+            class="animate-[dash-flow_2.6s_linear_infinite]"
+            style="stroke-dashoffset: 0"
+          />
+          <path
+            d="M200 450 Q190 490 185 530 Q180 580 190 620"
+            fill="none"
+            stroke="rgba(76,212,120,0.3)"
+            stroke-width="1.5"
+            stroke-dasharray="5 5"
+            class="animate-[dash-flow_3s_linear_infinite]"
+            style="stroke-dashoffset: 0"
+          />
+
+          <g filter="url(#truck-glow)">
+            <circle
+              cx="200"
+              cy="450"
+              r="16"
+              fill="rgba(200,16,46,0.15)"
+              stroke="rgba(200,16,46,0.5)"
+              stroke-width="1"
+            />
+            <circle
+              cx="200"
+              cy="450"
+              r="9"
+              fill="rgba(200,16,46,0.3)"
+              stroke="rgba(200,16,46,0.7)"
+              stroke-width="1.5"
+            />
+            <circle cx="200" cy="450" r="4" fill="#c8102e" />
+            <circle
+              cx="200"
+              cy="450"
+              r="22"
+              fill="none"
+              stroke="rgba(200,16,46,0.2)"
+              stroke-width="1"
+              class="animate-[pulse-dot_2s_ease-in-out_infinite]"
+            />
+            <circle
+              cx="200"
+              cy="450"
+              r="30"
+              fill="none"
+              stroke="rgba(200,16,46,0.1)"
+              stroke-width="0.5"
+              class="animate-[pulse-dot_2s_ease-in-out_infinite]"
+              style="animation-delay: 0.5s"
+            />
+          </g>
+
+          <g>
+            <circle
+              cx="520"
+              cy="200"
+              r="5"
+              fill="#f5a623"
+              opacity="0.9"
+              filter="url(#glow)"
+            />
+            <circle
+              cx="520"
+              cy="200"
+              r="10"
+              fill="none"
+              stroke="rgba(245,166,35,0.3)"
+              stroke-width="1"
+              class="animate-[pulse-dot_2.5s_ease-in-out_infinite]"
+              style="animation-delay: 0.3s"
+            />
+            <text
+              x="530"
+              y="196"
+              font-family="'DM Sans',sans-serif"
+              font-size="9"
+              fill="rgba(255,255,255,0.4)"
+              letter-spacing="0.05em"
+            >
+              SM NORTH
+            </text>
+          </g>
+          <g>
+            <circle
+              cx="490"
+              cy="360"
+              r="5"
+              fill="#4f8ef7"
+              opacity="0.9"
+              filter="url(#glow)"
+            />
+            <circle
+              cx="490"
+              cy="360"
+              r="10"
+              fill="none"
+              stroke="rgba(79,142,247,0.3)"
+              stroke-width="1"
+              class="animate-[pulse-dot_3s_ease-in-out_infinite]"
+              style="animation-delay: 0.7s"
+            />
+            <text
+              x="500"
+              y="356"
+              font-family="'DM Sans',sans-serif"
+              font-size="9"
+              fill="rgba(255,255,255,0.4)"
+              letter-spacing="0.05em"
+            >
+              MAKATI
+            </text>
+          </g>
+          <g>
+            <circle
+              cx="550"
+              cy="440"
+              r="5"
+              fill="#4cd478"
+              opacity="0.8"
+              filter="url(#glow)"
+            />
+            <circle
+              cx="550"
+              cy="440"
+              r="10"
+              fill="none"
+              stroke="rgba(76,212,120,0.3)"
+              stroke-width="1"
+              class="animate-[pulse-dot_2.8s_ease-in-out_infinite]"
+              style="animation-delay: 1s"
+            />
+            <text
+              x="560"
+              y="436"
+              font-family="'DM Sans',sans-serif"
+              font-size="9"
+              fill="rgba(255,255,255,0.4)"
+              letter-spacing="0.05em"
+            >
+              BGC
+            </text>
+          </g>
+
+          <g
+            class="animate-[truck-move_8s_linear_infinite]"
+            style="animation-name: truck1-anim"
+          >
+            <g filter="url(#truck-glow)">
+              <rect
+                x="-20"
+                y="-8"
+                width="36"
+                height="14"
+                rx="3"
+                fill="rgba(200,16,46,0.9)"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <rect
+                x="16"
+                y="-6"
+                width="14"
+                height="12"
+                rx="2"
+                fill="rgba(255,255,255,0.15)"
+                stroke="rgba(255,255,255,0.2)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="-10"
+                cy="6"
+                r="3.5"
+                fill="#111"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="8"
+                cy="6"
+                r="3.5"
+                fill="#111"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="22"
+                cy="6"
+                r="3"
+                fill="#111"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="0.5"
+              />
+              <circle cx="30" cy="-1" r="2" fill="rgba(255,240,150,0.9)" />
+            </g>
+          </g>
+          <g
+            class="animate-[truck-move_11s_linear_infinite]"
+            style="animation-name: truck2-anim; animation-delay: 2s"
+          >
+            <g filter="url(#truck-glow)">
+              <rect
+                x="-18"
+                y="-7"
+                width="32"
+                height="12"
+                rx="3"
+                fill="rgba(245,166,35,0.85)"
+                stroke="rgba(255,255,255,0.25)"
+                stroke-width="0.5"
+              />
+              <rect
+                x="14"
+                y="-5"
+                width="12"
+                height="10"
+                rx="2"
+                fill="rgba(255,255,255,0.12)"
+                stroke="rgba(255,255,255,0.2)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="-8"
+                cy="5"
+                r="3"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="6"
+                cy="5"
+                r="3"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="20"
+                cy="5"
+                r="2.5"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle cx="26" cy="-1" r="1.8" fill="rgba(255,240,150,0.8)" />
+            </g>
+          </g>
+          <g
+            class="animate-[truck-move_9s_linear_infinite]"
+            style="animation-name: truck3-anim; animation-delay: 4s"
+          >
+            <g filter="url(#truck-glow)">
+              <rect
+                x="-16"
+                y="-6"
+                width="28"
+                height="11"
+                rx="2.5"
+                fill="rgba(76,212,120,0.8)"
+                stroke="rgba(255,255,255,0.2)"
+                stroke-width="0.5"
+              />
+              <rect
+                x="12"
+                y="-5"
+                width="10"
+                height="9"
+                rx="2"
+                fill="rgba(255,255,255,0.1)"
+                stroke="rgba(255,255,255,0.15)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="-6"
+                cy="5"
+                r="2.8"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="4"
+                cy="5"
+                r="2.8"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle
+                cx="18"
+                cy="5"
+                r="2.3"
+                fill="#111"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="0.5"
+              />
+              <circle cx="22" cy="-1" r="1.6" fill="rgba(255,240,150,0.8)" />
+            </g>
+          </g>
+
+          <g
+            class="animate-[float-up_4s_ease-in-out_infinite]"
+            style="animation-delay: 1s"
+          >
+            <rect
+              x="390"
+              y="210"
+              width="72"
+              height="22"
+              rx="5"
+              fill="rgba(200,16,46,0.15)"
+              stroke="rgba(200,16,46,0.3)"
+              stroke-width="0.5"
+            />
+            <circle cx="402" cy="221" r="3" fill="#c8102e" />
+            <text
+              x="410"
+              y="225"
+              font-family="'DM Sans',sans-serif"
+              font-size="9"
+              fill="rgba(255,255,255,0.7)"
+            >
+              Delivered ✓
+            </text>
+          </g>
+          <g
+            class="animate-[float-up_4s_ease-in-out_infinite]"
+            style="animation-delay: 3s"
+          >
+            <rect
+              x="460"
+              y="340"
+              width="68"
+              height="22"
+              rx="5"
+              fill="rgba(76,212,120,0.12)"
+              stroke="rgba(76,212,120,0.3)"
+              stroke-width="0.5"
+            />
+            <circle cx="472" cy="351" r="3" fill="#4cd478" />
+            <text
+              x="480"
+              y="355"
+              font-family="'DM Sans',sans-serif"
+              font-size="9"
+              fill="rgba(255,255,255,0.6)"
+            >
+              In Transit
+            </text>
+          </g>
+
+          <text
+            x="155"
+            y="445"
+            font-family="'Syne',sans-serif"
+            font-size="10"
+            fill="rgba(255,255,255,0.4)"
+            letter-spacing="0.08em"
+          >
+            SYSU WH
+          </text>
+          <text
+            x="350"
+            y="668"
+            font-family="'DM Sans',sans-serif"
+            font-size="9"
+            fill="rgba(255,255,255,0.12)"
+            text-anchor="middle"
+            letter-spacing="0.08em"
+          >
+            SYSU INTERNATIONAL INC. — REAL-TIME FLEET MONITORING
+          </text>
+        </svg>
+
+        <!-- Left content overlay -->
+        <div class="absolute inset-0 z-10 flex flex-col">
+          <!-- Brand bar -->
+          <div class="flex items-center gap-3 px-8 pt-7">
+            <div
+              class="w-10 h-10 rounded-lg bg-sysu-red flex items-center justify-center font-display text-lg font-extrabold text-white shrink-0 shadow-[0_4px_20px_theme(colors.sysu-red-glow)] p-0 overflow-hidden"
+            >
+              <img
+                src="data:image/jpeg;base64,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"
+                class="w-full h-full object-cover rounded-lg"
+                alt="SYSU Logo"
+              />
+            </div>
+            <div>
+              <div
+                class="font-display text-[15px] font-bold text-white tracking-[-0.2px] leading-tight"
+              >
+                SYSU International Inc.
+              </div>
+              <div
+                class="text-[11px] text-white/35 tracking-[0.04em] uppercase"
+              >
+                Fleet Management System
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats bar -->
+          <div
+            class="flex mx-8 mt-auto bg-white/5 border border-sysu-border-light rounded-xl overflow-hidden backdrop-blur-md"
+          >
+            <div
+              class="flex-1 py-3.5 px-4 text-center border-r border-sysu-border-light relative overflow-hidden"
+            >
+              <span
+                class="font-display text-[22px] font-bold text-white leading-none block mb-[3px]"
+                id="statTrucks"
+                >0</span
+              >
+              <span
+                class="text-[10px] text-white/35 uppercase tracking-[0.06em]"
+                >Active Trucks</span
+              >
+            </div>
+            <div
+              class="flex-1 py-3.5 px-4 text-center border-r border-sysu-border-light relative overflow-hidden"
+            >
+              <span
+                class="font-display text-[22px] font-bold text-white leading-none block mb-[3px]"
+                id="statDeliveries"
+                >0</span
+              >
+              <span
+                class="text-[10px] text-white/35 uppercase tracking-[0.06em]"
+                >Deliveries Today</span
+              >
+            </div>
+            <div
+              class="flex-1 py-3.5 px-4 text-center relative overflow-hidden"
+            >
+              <span
+                class="font-display text-[22px] font-bold text-white leading-none block mb-[3px]"
+                ><span id="statUptime">99</span
+                ><span class="text-sysu-red">%</span></span
+              >
+              <span
+                class="text-[10px] text-white/35 uppercase tracking-[0.06em]"
+                >System Uptime</span
+              >
+            </div>
+          </div>
+
+          <!-- Feature slides -->
+          <div class="mx-8 mt-4 mb-5 min-h-[90px] relative">
+            <div
+              class="absolute inset-0 flex gap-4 items-start opacity-0 translate-y-2 transition-all duration-500 pointer-events-none active"
+              id="slide0"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-sysu-red/10 border border-sysu-red/25 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-5 h-5 stroke-sysu-red fill-none stroke-[1.8]"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                  />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-display text-[14px] font-bold text-white mb-1">
+                  Real-time GPS Tracking
+                </div>
+                <div class="text-[12px] text-white/45 leading-relaxed">
+                  Monitor every truck's exact location across Metro Manila and
+                  nearby provinces — updated every 30 seconds.
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute inset-0 flex gap-4 items-start opacity-0 translate-y-2 transition-all duration-500 pointer-events-none"
+              id="slide1"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-sysu-red/10 border border-sysu-red/25 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-5 h-5 stroke-sysu-red fill-none stroke-[1.8]"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                  <path d="M7 8h3m-3 4h5" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-display text-[14px] font-bold text-white mb-1">
+                  SAP Integration
+                </div>
+                <div class="text-[12px] text-white/45 leading-relaxed">
+                  Live sync with SAP shipment data — auto-assign drivers to
+                  inbound outbound deliveries without manual entry.
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute inset-0 flex gap-4 items-start opacity-0 translate-y-2 transition-all duration-500 pointer-events-none"
+              id="slide2"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-sysu-red/10 border border-sysu-red/25 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-5 h-5 stroke-sysu-red fill-none stroke-[1.8]"
+                >
+                  <path d="M9 12l2 2 4-4" />
+                  <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-display text-[14px] font-bold text-white mb-1">
+                  ePOD &amp; Auto-Dispatch
+                </div>
+                <div class="text-[12px] text-white/45 leading-relaxed">
+                  Digital signatures, photo proof of delivery, and AI-powered
+                  driver dispatch — all in one platform.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide nav -->
+          <div class="flex items-center gap-2.5 px-8 pb-7">
+            <div class="flex gap-1.5 flex-1">
+              <div
+                class="w-[18px] h-[3px] rounded-sm bg-white/15 cursor-pointer transition-all duration-300 on"
+                id="sdot0"
+              ></div>
+              <div
+                class="w-[18px] h-[3px] rounded-sm bg-white/15 cursor-pointer transition-all duration-300"
+                id="sdot1"
+              ></div>
+              <div
+                class="w-[18px] h-[3px] rounded-sm bg-white/15 cursor-pointer transition-all duration-300"
+                id="sdot2"
+              ></div>
+            </div>
+            <button
+              class="w-[30px] h-[30px] rounded-full border border-white/15 bg-white/5 text-white/60 flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-white/10 hover:border-white/30 hover:text-white"
+              id="prevSlideBtn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                class="w-3 h-3 stroke-[2.5]"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              class="w-[30px] h-[30px] rounded-full border border-white/15 bg-white/5 text-white/60 flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-white/10 hover:border-white/30 hover:text-white"
+              id="nextSlideBtn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                class="w-3 h-3 stroke-[2.5]"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ RIGHT PANEL ══════════ -->
+      <div
+        class="w-full lg:w-[400px] lg:min-w-[400px] bg-[#f7f7f9] flex flex-col relative overflow-hidden"
+      >
+        <!-- Accent Circles -->
+        <div
+          class="absolute -top-[80px] -right-[80px] w-[260px] h-[260px] rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(200,16,46,0.06)_0%,transparent_70%)]"
+        ></div>
+        <div
+          class="absolute -bottom-[60px] -left-[60px] w-[200px] h-[200px] rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(200,16,46,0.04)_0%,transparent_70%)]"
+        ></div>
+
+        <!-- Success overlay -->
+        <div
+          class="absolute inset-0 bg-[#f7f7f9] flex flex-col items-center justify-center z-[100] opacity-0 pointer-events-none transition-opacity duration-400 [&.show]:opacity-100 [&.show]:pointer-events-auto"
+          id="successOverlay"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-[#16a34a]/10 border-2 border-[#16a34a]/30 flex items-center justify-center mb-4 animate-[ring-pop_0.4s_cubic-bezier(0.175,0.885,0.32,1.275)_both]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="w-7 h-7 stroke-[#16a34a] fill-none stroke-[2.5]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <div class="font-display text-[20px] font-bold text-[#111] mb-1">
+            Welcome back!
+          </div>
+          <div class="text-[13px] text-[#9090a0]" id="successName">
+            Redirecting to dashboard...
+          </div>
+        </div>
+
+        <div
+          class="flex-1 flex flex-col justify-center py-10 px-7 sm:px-11 relative z-10 [&>*]:animate-[slideUp_0.5s_ease_both]"
+        >
+          <div
+            class="font-display text-[34px] font-extrabold text-[#0f0f14] tracking-[-1.2px] leading-[1.1] mb-1.5"
+            style="animation-delay: 0.1s"
+          >
+            Welcome<br />back 👋
+          </div>
+          <div
+            class="text-[13.5px] text-[#8c8c9e] mb-7 font-light"
+            style="animation-delay: 0.15s"
+          >
+            Sign in to your fleet dashboard.
+          </div>
+
+          <div
+            class="alert-msg error"
+            id="alertMsg"
+            style="animation-delay: 0.2s"
+          ></div>
+
+          <div class="mb-3 relative" style="animation-delay: 0.22s">
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              for="username"
+              >Username</label
+            >
+            <input
+              class="input-field"
+              type="text"
+              id="username"
+              placeholder="your.username"
+              autocomplete="username"
+              maxlength="32"
+            />
+          </div>
+
+          <div class="mb-3 relative" style="animation-delay: 0.25s">
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              for="password"
+              >Password</label
+            >
+            <input
+              class="input-field"
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+            <button
+              class="absolute right-3 bottom-3 bg-transparent border-none cursor-pointer text-[#b0b0be] flex items-center transition-colors duration-150 p-0.5 hover:text-[#555]"
+              type="button"
+              id="eyeBtn"
+              aria-label="Toggle password visibility"
+            >
+              <!-- Eye open icon -->
+              <svg
+                id="eyeOpen"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                class="w-4 h-4 stroke-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+              <!-- Eye closed icon -->
+              <svg
+                id="eyeClosed"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                class="w-4 h-4 stroke-2 hidden"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div
+            class="flex items-center justify-between mb-5"
+            style="animation-delay: 0.27s"
+          >
+            <label
+              class="flex items-center gap-2 text-[12.5px] text-[#6b6b80] cursor-pointer select-none"
+            >
+              <input
+                type="checkbox"
+                id="rememberMe"
+                class="w-[15px] h-[15px] accent-sysu-red cursor-pointer"
+                checked
+              />
+              Remember me
+            </label>
+            <a
+              class="text-[12.5px] text-sysu-red no-underline font-medium hover:opacity-75"
+              href="#"
+              id="forgotBtn"
+              >Forgot password?</a
+            >
+          </div>
+
+          <button
+            class="btn-login"
+            id="loginBtn"
+            style="animation-delay: 0.29s"
+          >
+            <span id="loginBtnText">Sign In</span>
+          </button>
+
+          <div
+            class="text-center text-[12.5px] text-[#9090a0]"
+            style="animation-delay: 0.35s"
+          >
+            Don't have an account?&nbsp;
+            <a
+              class="text-sysu-red font-semibold no-underline hover:underline"
+              href="#"
+              id="contactAdminBtn"
+              >Create account</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Overlay -->
+    <div
+      id="regOverlay"
+      class="fixed inset-0 bg-[#0f0f14]/80 backdrop-blur-md z-[2000] flex items-center justify-center opacity-0 pointer-events-none invisible transition-all duration-300"
+    >
+      <div
+        class="bg-white rounded-2xl w-full max-w-[420px] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transform scale-95 transition-transform duration-300"
+      >
+        <div class="text-center mb-6">
+          <div
+            class="w-12 h-12 bg-sysu-red/10 text-sysu-red rounded-full flex items-center justify-center mx-auto mb-3"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="w-6 h-6 stroke-2"
+            >
+              <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <line x1="20" y1="8" x2="20" y2="14" />
+              <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
+          </div>
+          <h2 class="font-display text-2xl font-bold text-[#111]">
+            Create Account
+          </h2>
+          <p class="text-[13px] text-[#6b6b80] mt-1">
+            Create a username and password, then submit your access request.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              for="regUsername"
+              >Username</label
+            >
+            <input
+              type="text"
+              id="regUsername"
+              autocomplete="username"
+              maxlength="32"
+              class="w-full h-11 px-4 rounded-lg border border-[#e2e2ea] bg-[#fdfdff] text-[14px] text-[#111] focus:border-sysu-red focus:ring-1 focus:ring-sysu-red outline-none transition-all placeholder:text-[#b0b0be]"
+              placeholder="your.username"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              for="regPassword"
+              >Password (8 characters minimum)</label
+            >
+            <input
+              type="password"
+              id="regPassword"
+              autocomplete="new-password"
+              maxlength="128"
+              class="w-full h-11 px-4 rounded-lg border border-[#e2e2ea] bg-[#fdfdff] text-[14px] text-[#111] focus:border-sysu-red focus:ring-1 focus:ring-sysu-red outline-none transition-all placeholder:text-[#b0b0be]"
+              placeholder="Create a password"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="regName"
+              class="w-full h-11 px-4 rounded-lg border border-[#e2e2ea] bg-[#fdfdff] text-[14px] text-[#111] focus:border-sysu-red focus:ring-1 focus:ring-sysu-red outline-none transition-all placeholder:text-[#b0b0be]"
+              placeholder="Juan Dela Cruz"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              >Phone Number</label
+            >
+            <input
+              type="text"
+              id="regPhone"
+              class="w-full h-11 px-4 rounded-lg border border-[#e2e2ea] bg-[#fdfdff] text-[14px] text-[#111] focus:border-sysu-red focus:ring-1 focus:ring-sysu-red outline-none transition-all placeholder:text-[#b0b0be]"
+              placeholder="09XX XXX XXXX"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-medium text-[#6b6b80] uppercase tracking-[0.06em] mb-1"
+              >Position / Role</label
+            >
+            <select
+              id="regPosition"
+              class="w-full h-11 px-4 rounded-lg border border-[#e2e2ea] bg-[#fdfdff] text-[14px] text-[#111] focus:border-sysu-red focus:ring-1 focus:ring-sysu-red outline-none transition-all appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected>Select your position</option>
+              <option value="Admin">Admin</option>
+              <option value="Fleet Manager">Fleet Manager</option>
+            </select>
+          </div>
+        </div>
+
+        <button
+          id="submitRegBtn"
+          class="w-full h-12 bg-sysu-red hover:bg-[#b00f28] text-white rounded-lg font-bold text-[14px] mt-6 transition-colors shadow-[0_4px_14px_rgba(200,16,46,0.3)]"
+        >
+          Submit Request
+        </button>
+        <button
+          id="cancelRegBtn"
+          class="w-full h-10 bg-transparent text-[#6b6b80] hover:text-[#111] rounded-lg font-medium text-[13px] mt-2 transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- Pending Approval Overlay -->
+    <div
+      id="pendingOverlay"
+      class="fixed inset-0 bg-[#0f0f14]/80 backdrop-blur-md z-[2000] flex items-center justify-center opacity-0 pointer-events-none invisible transition-all duration-300"
+    >
+      <div
+        class="bg-white rounded-2xl w-full max-w-[420px] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] text-center"
+      >
+        <div
+          class="w-16 h-16 bg-[#f5a623]/10 border-2 border-[#f5a623]/30 text-[#f5a623] rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            class="w-8 h-8 stroke-2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+        <h2 class="font-display text-2xl font-bold text-[#111] mb-2">
+          Pending Approval
+        </h2>
+        <p class="text-[14px] text-[#6b6b80] leading-relaxed mb-6">
+          Hello
+          <strong id="pendingName" class="text-[#111]">User</strong>,<br />
+          Your account registration has been submitted. Please wait for a Super
+          Admin to assign your role and grant access.
+        </p>
+        <button
+          id="pendingBackBtn"
+          class="h-10 px-6 bg-[#f7f7f9] hover:bg-[#e2e2ea] text-[#111] rounded-lg font-semibold text-[13px] transition-colors border border-[#e2e2ea]"
+        >
+          Return to Login
+        </button>
+      </div>
+    </div>
+
+    <!-- Scripts linked cleanly per Vite standards -->
+    <script type="module" src="src/main.js"></script>
+    <script type="module" src="src/pages/index.js"></script>
+  </body>
+</html>

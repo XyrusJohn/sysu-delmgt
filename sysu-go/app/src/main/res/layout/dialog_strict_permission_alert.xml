@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:elevation="16dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="20dp"
+    android:paddingHorizontal="20dp">
+
+    <!-- Warning Icon with Glow Circle -->
+    <ImageView
+        android:id="@+id/ivPermAlertIcon"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:background="@drawable/bg_dialog_icon_circle"
+        android:src="@drawable/ic_dialog_destructive"
+        android:padding="12dp"
+        android:elevation="4dp"
+        android:contentDescription="Permission alert"
+        app:tint="@color/sysu_red"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Strict Title -->
+    <TextView
+        android:id="@+id/tvPermAlertTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kailangan ang Permission!"
+        android:textColor="@color/sysu_red"
+        android:textSize="18sp"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:gravity="center"
+        android:layout_marginBottom="6dp" />
+
+    <!-- Subtitle instruction -->
+    <TextView
+        android:id="@+id/tvPermAlertMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="I-enable ang mga sumusunod na permission sa Settings para hindi mag-offline at magpatuloy ang app:"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginBottom="14dp" />
+
+    <!-- Scrollable container for missing permission list items -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="280dp"
+        android:fillViewport="true"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:id="@+id/llMissingItemsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Action Button — Open App Settings -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGrantPermissionsNow"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:text="Buksan ang App Info / Settings"
+        android:textSize="@dimen/text_size_button"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/sysu_red"
+        app:cornerRadius="@dimen/corner_radius_button"
+        app:icon="@drawable/ic_dialog_confirm"
+        app:iconTint="@color/white"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:elevation="2dp" />
+
+</LinearLayout>

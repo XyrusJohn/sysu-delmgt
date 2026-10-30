@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:descendantFocusability="afterDescendants"
+    app:cardCornerRadius="@dimen/corner_radius_small"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/surface2">
+
+    <!--
+        NOTE: No clickable/focusable/selectableItemBackground on this parent LinearLayout.
+        On MIUI, selectableItemBackground on a parent intercepts ALL child touch events
+        before they reach child views (tvUnloadAction, tvDeliveryStatus, etc).
+        The row is NOT clickable — only tvUnloadAction (UNLOAD/CAPTURE/RETAKE buttons)
+        handles touch. This is intentional for the fool-proof design.
+        COMPLETED rows: row click is handled separately via rowView.setOnClickListener
+        in ObdItemsBottomSheet.kt inflatePodRow() — no layout-level click attribute needed.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="72dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        android:paddingEnd="14dp">
+
+        <!-- Red left accent bar — matches existing OBD row pattern -->
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/sysu_red" />
+
+        <!-- OBD number + customer name -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="14dp">
+
+            <TextView
+                android:id="@+id/tvObdNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold"
+                android:letterSpacing="0.03"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="6051555386" />
+
+            <TextView
+                android:id="@+id/tvCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_caption"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                tools:text="Juan dela Cruz — 123 Adel St." />
+        </LinearLayout>
+
+        <!-- Quantity — removed from My Trip bottom sheet row; ObdTripAdapter controls its own visibility if needed -->
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:minWidth="0dp"
+            android:gravity="start"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:textStyle="bold"
+            tools:text="229"
+            tools:visibility="gone" />
+
+        <!-- Delivery status pill — color-coded -->
+        <TextView
+            android:id="@+id/tvDeliveryStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            tools:text="DELIVERED"
+            tools:textColor="@color/text_amber"
+            tools:background="@color/amber_pill_bg" />
+
+        <!-- PREVIEW pill — replaces camera icon; visible only on COMPLETE rows after POD capture.
+             Default gone in XML; Kotlin sets text="PREVIEW" + visibility=VISIBLE in COMPLETE branch. -->
+        <TextView
+            android:id="@+id/ivPodIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_pod_pending_pill"
+            android:textColor="@color/transit_amber_dark"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:visibility="gone"
+            android:text="PREVIEW"
+            tools:visibility="visible" />
+
+        <!--
+            UNLOAD/CAPTURE/RETAKE action button — the only tappable control in the row.
+            - PENDING: displays "UNLOAD" (amber pill), triggers confirm dialog → unlock OBD
+            - UNLOADING: displays "CAPTURE" (orange pill), fires camera/POD flow
+            - COMPLETE: displays "RETAKE" (outlined grey), redoes POD from scratch
+            This is intentionally the ONLY interactive element — fool-proof design means
+            no camera icon, no row click, no other targets during PENDING/UNLOADING.
+        -->
+        <TextView
+            android:id="@+id/tvUnloadAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_pod_pending_pill"
+            android:textColor="@color/transit_amber_dark"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold"
+            android:text="UNLOAD"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Per-row loading indicator — visible while status is being reloaded -->
+        <ProgressBar
+            android:id="@+id/pbItemLoading"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="8dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:indeterminateTint="@color/sysu_red" />
+
+        <!-- CANCEL UNLOAD button — shown alongside CAPTURE during UNLOADING.
+             Tapping clears unloadStatus and returns to PENDING.
+             Default gone; all uppercase for visual weight matching CAPTURE. -->
+        <TextView
+            android:id="@+id/tvCancelUnload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_cancel_unload_pill"
+            android:textColor="@color/sysu_red"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold"
+            android:text="CANCEL"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

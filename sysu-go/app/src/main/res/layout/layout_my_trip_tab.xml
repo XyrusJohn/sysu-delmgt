@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- TOP BAR — fixed @dimen/header_height, white -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/white"
+        android:elevation="@dimen/elevation_floating"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTopBarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/atkinson_hyperlegible_bold"
+                android:letterSpacing="0.1"
+                android:text="@string/my_trip_title"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_button"
+                android:textStyle="bold" />
+
+            <!-- Aggregate verification badge — pill style, updated live -->
+            <LinearLayout
+                android:id="@+id/aggregateBadgeContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_status_pill_green"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <View
+                    android:id="@+id/aggregateBadgeDot"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:background="@drawable/bg_status_dot_green" />
+
+                <TextView
+                    android:id="@+id/tvAggregateBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_regular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_caption" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@id/topBar" />
+
+    <!-- RED BANNER — 140dp, bouncing circles + pulse rings + aggregate pill -->
+    <FrameLayout
+        android:id="@+id/redBanner"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_red_header_rounded_bottom"
+        app:layout_constraintTop_toBottomOf="@id/divider">
+
+        <!-- Pulse ring 1 (behind circles) -->
+        <View
+            android:id="@+id/pulseRing1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:alpha="0.0"
+            android:background="@drawable/bg_pulse_ring"
+            android:visibility="gone" />
+
+        <!-- Pulse ring 2 (behind circles) -->
+        <View
+            android:id="@+id/pulseRing2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:alpha="0.0"
+            android:background="@drawable/bg_pulse_ring"
+            android:visibility="gone" />
+
+        <!-- Bouncing circles — added programmatically to circleContainer -->
+        <FrameLayout
+            android:id="@+id/circleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Center content: aggregate pill -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/badgeVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_status_pill_green"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp">
+
+                <View
+                    android:id="@+id/badgeDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/bg_status_dot_green" />
+
+                <TextView
+                    android:id="@+id/tvBadgeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/atkinson_hyperlegible_bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvLocationCoords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="monospace"
+                android:textColor="#80FFFFFF"
+                android:textSize="@dimen/text_size_caption"
+                android:visibility="gone" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- TRIPS RecyclerView — full height below banner -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvShipments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="always"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redBanner" />
+
+    <!-- Empty state — shown when list is empty -->
+    <LinearLayout
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redBanner">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:text="No trips yet"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/atkinson_hyperlegible_regular"
+            android:gravity="center"
+            android:text="All assigned trips will appear here"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_label" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

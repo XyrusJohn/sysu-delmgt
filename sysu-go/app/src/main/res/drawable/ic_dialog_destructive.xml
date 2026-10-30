@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Circle background: sysu_red -->
+    <path
+        android:fillColor="#c8102e"
+        android:pathData="M24,4A20,20 0,1 0,24 44A20,20 0,0 0,24 4Z" />
+    <!-- Door/exit icon in white — representing logout/signout -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16,12v20L22,30v-2h-4L18,14h4v-2L16,12zM27,17l-1.4,1.4l4.6,4.6L14,23v2h16.2l-4.6,4.6L27,31l7,-7L27,17z"/>
+</vector>

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.tools/
+firebase-debug.log
+firestore-debug.log
+dist/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+.worktrees/
+.worktrees_backup/
+
+# Secrets & Security
+.env
+**/*.env
+**/service-account.json
+**/*.log
+**/firebase-qr.json
+
+# Firebase/Hosting
+.firebase/
+frontend/.firebase/
+*/hosting.*.cache
+
+frontend/.env
+backend/.env
+
+CODE_REVIEW_FINDINGS.md
+CLEANUP_FINDINGS.md
+KOTLIN_APP.md
+KOTLIN_INTEGRATION.md
+SECURITY-CHECKLIST.md

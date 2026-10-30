@@ -1,0 +1,24 @@
+# Explicit runtime-only context; credentials and local environment excluded.
+**
+!backend/
+!backend/package.json
+!backend/package-lock.json
+!backend/server.js
+!backend/constants/
+!backend/constants/**/*.js
+!backend/config/
+!backend/config/**/*.js
+!backend/controller/
+!backend/controller/**/*.js
+!backend/controllers/
+!backend/controllers/**/*.js
+!backend/routes/
+!backend/routes/**/*.js
+!backend/models/
+!backend/models/**/*.js
+!backend/utils/
+!backend/utils/**/*.js
+!backend/services/
+!backend/services/**/*.js
+!backend/middleware/
+!backend/middleware/**/*.js

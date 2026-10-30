@@ -1,0 +1,13 @@
+const test=require('node:test'),assert=require('node:assert/strict'),Module=require('node:module'),fs=require('node:fs'),path=require('node:path');
+const express=require('express'),http=require('node:http');
+function load(file,imports){const p=path.resolve(__dirname,'../../',file),m=new Module(p);m.filename=p;m.require=n=>{if(n in imports)return imports[n];throw Error('Unexpected import '+n);};m._compile(fs.readFileSync(p,'utf8'),p);return m.exports;}
+for(const role of ['driver','fleet_manager','qr_generator','admin','super_admin'])test('G11 retired dispatch has no writes or broadcasts for '+role,async()=>{
+let writes=0,events=0;const routes=new Map(),ref={get:async()=>({exists:false,data:()=>({})}),update:async()=>writes++};const db={collection:()=>({doc:()=>ref}),runTransaction:async work=>work({get:r=>r.get(),set:()=>writes++})};
+load('routes/dispatchRoutes.js',{express:{Router:()=>({post:(url,...handlers)=>routes.set(url,handlers)})},'../middleware/auth.js':{verifyToken:()=>{}}});
+const handler=routes.get('/status').at(-1);for(const body of [{dispatchKey:'nonexistent',status:'delivered',driverId:'victim',notes:'private notes'},{dispatchKey:'foreign',status:'cancelled',driverId:'caller'},{dispatchKey:'foreign',status:'loading',lat:999,lng:'invalid'}]){const res={code:200,status(n){this.code=n;return this;},json(b){this.body=b;return this;}};await handler({user:{uid:'caller'},userProfile:{role,status:'active'},body,app:{get:()=>({emit:()=>events++})}},res);assert.equal(res.code,410);assert.equal(res.body.success,false);}assert.equal(writes,0);assert.equal(events,0);
+});
+for(const authenticated of [false,true])test('G11 loopback HTTP '+(authenticated?'retired':'anonymous denied'),async()=>{
+let writes=0;const ref={get:async()=>({exists:false,data:()=>({})}),update:async()=>writes++};
+const router=load('routes/dispatchRoutes.js',{express,'../middleware/auth.js':{verifyToken:(req,res,next)=>{if(req.headers.authorization!=='Bearer synthetic')return res.status(401).json({success:false});req.user={uid:'caller'};req.userProfile={role:'driver',status:'active'};next();}}});
+const app=express();app.use(express.json());app.use('/api/dispatch',router);const server=http.createServer(app);await new Promise(r=>server.listen(0,'127.0.0.1',r));try{const response=await fetch('http://127.0.0.1:'+server.address().port+'/api/dispatch/status',{method:'POST',headers:{'Content-Type':'application/json',...(authenticated?{Authorization:'Bearer synthetic'}:{})},body:JSON.stringify({dispatchKey:'missing',status:'delivered',driverId:'victim'})});assert.equal(response.status,authenticated?410:401);assert.equal(writes,0);}finally{server.closeAllConnections();await new Promise(r=>server.close(r));}
+});

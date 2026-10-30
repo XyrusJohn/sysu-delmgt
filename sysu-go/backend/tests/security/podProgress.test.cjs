@@ -1,0 +1,23 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const {applyPodProgress,validatePodRequest}=require('../../services/podProgress.js');
+const image='data:image/jpeg;base64,/9j/AA==';
+const rows=[{obdNumber:'OBD-A',quantity:10},{obdNumber:'OBD-B',quantity:20},{obdNumber:'OBD-A',quantity:5}];
+const assignment={driverId:'driver-a',tripStatus:'in_transit',lineItems:rows};
+const input={action:'complete',base64Image:image,deliveryStatus:'All Delivered',capturedAtMillis:1000};
+test('foreign driver cannot change assignment',()=>assert.throws(()=>applyPodProgress(assignment,'driver-b','OBD-A',input,1000)));
+test('inactive trip cannot change POD',()=>assert.throws(()=>applyPodProgress({...assignment,tripStatus:'assigned'},'driver-a','OBD-A',input,1000)));
+test('unknown OBD does not append or drop canonical rows',()=>assert.throws(()=>applyPodProgress(assignment,'driver-a','missing',input,1000)));
+test('complete updates every row of selected OBD and preserves SAP values/siblings',()=>{
+ const next=applyPodProgress(assignment,'driver-a','OBD-A',input,1000);
+ assert.equal(next[0].isPodCompleted,true);assert.equal(next[2].isPodCompleted,true);
+ assert.deepEqual(next[1],rows[1]);assert.equal(next[0].quantity,10);assert.equal(next[2].quantity,5);assert.deepEqual(assignment.lineItems,rows);
+});
+test('retry same completion is idempotent',()=>{const next=applyPodProgress(assignment,'driver-a','OBD-A',input,1000);assert.deepEqual(applyPodProgress({...assignment,lineItems:next},'driver-a','OBD-A',input,1000),next);});
+test('retake resets selected OBD only',()=>{const complete=applyPodProgress(assignment,'driver-a','OBD-A',input,1000);const reset=applyPodProgress({...assignment,lineItems:complete},'driver-a','OBD-A',{action:'retake'},1000);assert.equal(reset[0].isPodCompleted,false);assert.equal(reset[2].isPodCompleted,false);assert.deepEqual(reset[1],rows[1]);});
+test('unload refuses completed POD until explicit retake',()=>{const complete=applyPodProgress(assignment,'driver-a','OBD-A',input,1000);assert.throws(()=>applyPodProgress({...assignment,lineItems:complete},'driver-a','OBD-A',{action:'unload',unloadStatus:'UNLOADING'},1000));});
+test('bounded JPEG rejects malformed/oversized image and status',()=>{for(const patch of [{base64Image:'https://public/image'},{base64Image:'data:image/jpeg;base64,'+'A'.repeat(900000)},{base64Image:'data:image/jpeg;base64,not base64!'},{deliveryStatus:'forged'}])assert.throws(()=>validatePodRequest({...input,...patch},1000));});
+test('future/stale/invalid capture timestamps rejected',()=>{for(const capturedAtMillis of [-1,NaN,Date.now()+120000,1])assert.throws(()=>validatePodRequest({...input,capturedAtMillis},Date.now()));});
+test('unload status and action whitelist',()=>{assert.throws(()=>validatePodRequest({action:'unload',unloadStatus:'DELIVERED'},1000));assert.throws(()=>validatePodRequest({action:'delete'},1000));assert.doesNotThrow(()=>validatePodRequest({action:'unload',unloadStatus:''},1000));});
+test('caller cannot supply driver identity/SAP fields',()=>assert.throws(()=>validatePodRequest({...input,driverId:'driver-b'},1000)));
+test('malformed canonical lineItems fail closed',()=>assert.throws(()=>applyPodProgress({...assignment,lineItems:[rows[0],null]},'driver-a','OBD-A',input,1000)));

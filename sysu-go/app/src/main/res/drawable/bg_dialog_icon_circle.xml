@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Glass-pill circle background for dialog icon hero.
+  Uses semi-transparent fill + subtle stroke so backgroundTint
+  in code can shift it to red/green/blue/amber per intent.
+
+  Code usage:
+    ivDialogIcon.backgroundTintList =
+        ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.sysu_red))
+
+  Without tinting it renders as a clean white circle with a ghost edge.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <!-- 12% fill — tinted by code to intent color -->
+    <solid android:color="#1AFFFFFF" />
+    <!-- 1.5dp stroke at 35% opacity — tinted by code -->
+    <stroke
+        android:width="1.5dp"
+        android:color="#40FFFFFF" />
+</shape>

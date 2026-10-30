@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Default: Bawal ang HTTP (Cleartext) sa buong app para sa security -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+
+    <!-- Exception: Dito lang tayo papayag ng HTTP (para sa local development lang) -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain> <!-- Emulator -->
+        <domain includeSubdomains="true">localhost</domain>
+        <!-- Dito natin ilalagay ang IP ranges ng local network -->
+        <domain includeSubdomains="true">192.168.1.1</domain>
+        <domain includeSubdomains="true">192.168.1.2</domain>
+        <!-- Tip: Pwede ring specific IP ng PC mo para mas safe -->
+        <domain includeSubdomains="true">192.168.1.13</domain>
+    </domain-config>
+</network-security-config>

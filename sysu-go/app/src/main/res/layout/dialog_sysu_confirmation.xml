@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SYSU unified confirmation dialog — 2-button (enterprise v2)
+
+  Signature: elevated white card with glass-pill icon circle.
+  The 56dp semi-transparent circle behind each icon adds depth.
+
+  Usage:
+    val dlgView = LayoutInflater.from(ctx).inflate(R.layout.dialog_sysu_confirmation, null)
+    dlgView.findViewById<ImageView>(R.id.ivDialogIcon).apply {
+        setImageResource(R.drawable.ic_dialog_confirm)
+        //  Tint the glass circle to match the icon's intent color:
+        backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.sysu_green))
+    }
+    dlgView.findViewById<TextView>(R.id.tvDialogTitle).text = "Start Trip"
+    dlgView.findViewById<TextView>(R.id.tvDialogMessage).text = "..."
+    dlgView.findViewById<MaterialButton>(R.id.btnConfirm).apply {
+        text = "Start Trip"
+        backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.sysu_red))
+        setOnClickListener { ... }
+    }
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:elevation="10dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp"
+    android:paddingHorizontal="28dp">
+
+    <!-- Icon hero — 56dp glass circle behind the SVG icon for depth -->
+    <ImageView
+        android:id="@+id/ivDialogIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_dialog_icon_circle"
+        android:contentDescription="Dialog icon"
+        android:padding="10dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Title — bold, centered, strong presence -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_body"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:gravity="center"
+        android:layout_marginBottom="6dp" />
+
+    <!-- Message body — lighter weight, centered with breathing room -->
+    <TextView
+        android:id="@+id/tvDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_label"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="22dp" />
+
+    <!-- Divider — subtle but visible -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border"
+        android:layout_marginBottom="18dp" />
+
+    <!-- Action buttons row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Secondary: Cancel — outlined with bold label -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:text="@string/cancel"
+            android:textSize="@dimen/text_size_button"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/corner_radius_button"
+            app:strokeColor="@color/border"
+            android:textColor="@color/text_secondary" />
+
+        <!-- Primary: Confirm — filled, color set in code per intent -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="@string/confirm"
+            android:textSize="@dimen/text_size_button"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/sysu_red"
+            app:cornerRadius="@dimen/corner_radius_button" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Circle background: sysu_blue -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M24,4A20,20 0,1 0,24 44A20,20 0,0 0,24 4Z"/>
+    <!-- Box / package icon in white — clean geometric delivery box -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,14v20h20V14H14zM16,16h16v12h-4v-4h-6v6H16V16zM28,16h2v2h-2ZM16,32h16v2H16z"/>
+</vector>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <!-- VERIFIED BY label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VERIFIED BY"
+        android:textSize="@dimen/text_size_caption"
+        android:textAllCaps="true"
+        android:letterSpacing="0.1"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+    <!-- Horizontal divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="#E0E0E0" />
+
+    <!-- Guard full name -->
+    <TextView
+        android:id="@+id/tvGuardFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+    <!-- Signature label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Signature"
+        android:textSize="@dimen/text_size_caption"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+    <!-- Signature card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:cardCornerRadius="@dimen/corner_radius_small"
+        app:cardBackgroundColor="#FAFAFA"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/ivSignature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Timestamp -->
+    <TextView
+        android:id="@+id/tvVerifiedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="@dimen/text_size_label"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+    <!-- SUBMIT confirmation button — requires a second tap to confirm -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuardVerificationSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginTop="24dp"
+        android:text="SUBMIT VERIFICATION"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_button"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        app:elevation="4dp"
+        app:strokeWidth="0dp"
+        app:backgroundTint="@color/sysu_red"
+        app:cornerRadius="@dimen/corner_radius_button" />
+
+</LinearLayout>

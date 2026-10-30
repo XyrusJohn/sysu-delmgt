@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Enterprise QR scanner frame — rounded tracking window -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/transparent" />
+    <stroke
+        android:width="2dp"
+        android:color="#FFFFFF"
+        android:dashGap="0dp" />
+    <corners android:radius="24dp" />
+</shape>

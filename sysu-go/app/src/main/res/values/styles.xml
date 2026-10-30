@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================================================
+         Typography Scale — Display / Headline
+         Bacasime Antique: vintage editorial serif, authoritative character
+         ============================================================ -->
+
+    <!-- Display — for hero numbers, large ticket counts, dramatic callouts -->
+    <style name="TextAppearance.Sysu.Display" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_display</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/bacasime_antique</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <!-- Headline — section headers, card titles, driver name on dashboard -->
+    <style name="TextAppearance.Sysu.Headline" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_headline</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/bacasime_antique</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- ============================================================
+         Typography Scale — UI / Body
+         Atkinson Hyperlegible: engineered for maximum legibility
+         ============================================================ -->
+
+    <!-- Title Large — screen-level titles, page headers -->
+    <style name="TextAppearance.Sysu.TitleLarge" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_title_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Title — card titles, action labels -->
+    <style name="TextAppearance.Sysu.Title" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Subtitle — secondary card headers, section labels -->
+    <style name="TextAppearance.Sysu.Subtitle" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_subtitle</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Body — general text, descriptive copy, form field content -->
+    <style name="TextAppearance.Sysu.Body" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_regular</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+    </style>
+
+    <!-- Label — button text, chip content, compact UI labels -->
+    <style name="TextAppearance.Sysu.Label" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_label</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <!-- Caption — helper text, timestamps, the smallest UI text -->
+    <style name="TextAppearance.Sysu.Caption" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_regular</item>
+    </style>
+
+    <!-- Button — call-to-action labels -->
+    <style name="TextAppearance.Sysu.Button" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <!-- Input — form field text (unfocused content) -->
+    <style name="TextAppearance.Sysu.Input" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_input</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_regular</item>
+    </style>
+
+    <!-- ============================================================
+         CTA System — card-level call-to-action components
+         ============================================================ -->
+
+    <!-- CTA Status Pill (uppercase, bold, small) -->
+    <style name="TextAppearance.Sysu.CTA.StatusPill" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textColor">@color/sysu_red</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.12</item>
+    </style>
+
+    <!-- CTA Status Pill - queued state (gold) -->
+    <style name="TextAppearance.Sysu.CTA.StatusPill.Queued" parent="TextAppearance.Sysu.CTA.StatusPill">
+        <item name="android:textColor">@color/sysu_gold</item>
+    </style>
+
+    <!-- CTA Header — card section header -->
+    <style name="TextAppearance.Sysu.CTA.Header" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_label</item>
+        <item name="android:textColor">@color/sysu_red</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <!-- CTA Body — descriptive card body text -->
+    <style name="TextAppearance.Sysu.CTA.Body" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:fontFamily">@font/atkinson_hyperlegible_regular</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+</resources>

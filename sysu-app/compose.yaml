@@ -1,0 +1,18 @@
+services:
+  api:
+    image: sysu-app-api:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: "3000"
+      DB_ADMIN_HOST: ""
+      DB_ADMIN_PORT: ""
+      DB_ADMIN_USER: ""
+      DB_ADMIN_PASSWORD: ""
+    ports:
+      - "127.0.0.1:${HOST_PORT:-3000}:3000"

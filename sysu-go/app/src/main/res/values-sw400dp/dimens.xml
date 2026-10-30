@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         Tier A — Spacing (400dp ≤ screen < 480dp)
+         Standard-large phones: 5.8" – 6.3" (Pixel 7, Samsung S21/S22)
+         ============================================================ -->
+    <dimen name="screen_padding_horizontal">24dp</dimen>
+    <dimen name="screen_padding_vertical">22dp</dimen>
+    <dimen name="section_spacing">18dp</dimen>
+    <dimen name="card_margin_horizontal">24dp</dimen>
+    <dimen name="card_spacing">18dp</dimen>
+    <dimen name="form_spacing">18dp</dimen>
+    <dimen name="obd_row_height">54dp</dimen>
+    <dimen name="obd_header_padding_vert">12dp</dimen>
+    <dimen name="obd_header_padding_horiz">18dp</dimen>
+    <dimen name="obd_padding_horizontal">18dp</dimen>
+    <dimen name="obd_col_header_padding_vert">12dp</dimen>
+    <dimen name="obd_col_header_padding_horiz">18dp</dimen>
+    <dimen name="obd_empty_padding">28dp</dimen>
+
+    <!-- ============================================================
+         Tier B — Text sizes (sp)
+         ============================================================ -->
+    <dimen name="text_size_display">60sp</dimen>
+    <dimen name="text_size_queue_number">60sp</dimen>
+    <dimen name="text_size_title_large">28sp</dimen>
+    <dimen name="text_size_title">22sp</dimen>
+    <dimen name="text_size_subtitle">20sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_label">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_button">16sp</dimen>
+    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="text_size_input">16sp</dimen>
+    <dimen name="text_size_tab">14sp</dimen>
+
+    <!-- ============================================================
+         Tier C — Structural
+         ============================================================ -->
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_card">22dp</dimen>
+    <dimen name="corner_radius_pill">26dp</dimen>
+    <dimen name="corner_radius_button">12dp</dimen>
+    <dimen name="card_corner_radius">22dp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
+    <dimen name="elevation_floating">6dp</dimen>
+    <dimen name="elevation_banner">0dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="btn_height">56dp</dimen>
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="helper_card_height">64dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="obd_accent_bar_width">3dp</dimen>
+    <dimen name="obd_red_bar_height">3.5dp</dimen>
+    <dimen name="drag_handle_width">36dp</dimen>
+    <dimen name="drag_handle_height">4dp</dimen>
+    <dimen name="otp_digit_size">54dp</dimen>
+    <dimen name="banner_height">280dp</dimen>
+    <dimen name="banner_card_overlap">200dp</dimen>
+    <dimen name="header_height">72dp</dimen>
+    <dimen name="count_pill_pad_h">10dp</dimen>
+    <dimen name="count_pill_pad_v">4dp</dimen>
+    <dimen name="topbar_height">64dp</dimen>
+    <dimen name="status_badge_padding_horiz">10dp</dimen>
+    <dimen name="status_badge_padding_vert">4dp</dimen>
+    <dimen name="status_dot_size">8dp</dimen>
+    <dimen name="accent_bar_width">3dp</dimen>
+    <dimen name="accent_bar_height">64dp</dimen>
+    <dimen name="icon_circle_size">52dp</dimen>
+    <dimen name="icon_size_small">22dp</dimen>
+    <dimen name="icon_size_medium">26dp</dimen>
+    <dimen name="screen_padding_bottom">28dp</dimen>
+    <dimen name="text_max_width">300dp</dimen>
+</resources>

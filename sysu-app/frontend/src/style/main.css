@@ -1,0 +1,1055 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-sysu-red: #c8102e;
+  --color-sysu-red-dark: #9e0b22;
+  --color-sysu-red-glow: rgba(200, 16, 46, 0.35);
+  --color-sysu-gold: #f5a623;
+  --color-sysu-gold-soft: rgba(245, 166, 35, 0.15);
+  --color-sysu-dark: #060608;
+  --color-sysu-panel: #0d0d12;
+  --color-sysu-card: #12121a;
+  --color-sysu-border: #1e1e2a;
+  --color-sysu-border-light: rgba(255, 255, 255, 0.07);
+  --color-sysu-text: #f0f0f2;
+  --color-sysu-text2: #acb3be;
+  --color-sysu-text3: #7e8693;
+  --map-popup-surface: #1c1e21;
+  --map-popup-border: rgba(255, 255, 255, 0.07);
+  --map-popup-divider: rgba(255, 255, 255, 0.05);
+  --map-popup-text: #f1f5f9;
+  --map-popup-secondary: #cacfd8;
+  --map-popup-muted: #94a3b8;
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  /* Dashboard Specific Tokens */
+  --color-db-bg: #15171a;
+  --color-db-rail: #1c1e21;
+  --color-db-panel: #1c1e21;
+  --color-db-border: #2d3035;
+  --color-db-text: #f0f0f0;
+  --color-db-text2: #b0b5be;
+  --color-db-text3: #7e8693;
+  --color-db-item-hover: #25282c;
+  --color-db-item-active: #25282c;
+  
+  --spacing-rail-w: 52px;
+  --spacing-panel-w: 240px;
+}
+
+/* Light Mode — activated via data-theme="light" on <html> */
+[data-theme="light"] {
+  --color-db-bg: #f0f2f5;
+  --color-db-rail: #e3e7ec;
+  --color-db-panel: #ffffff;
+  --color-db-border: #cdd2d9;
+  --color-db-text: #1a1d23;
+  --color-db-text2: #4a5568;
+  --color-db-text3: #586574;
+  --color-db-item-hover: #e2e6ec;
+  --color-db-item-active: #d5dce6;
+  --color-sysu-panel: #ffffff;
+  --color-sysu-card: #ffffff;
+  --color-sysu-border: #cdd2d9;
+  --color-sysu-border-light: rgba(0,0,0,0.07);
+  --color-sysu-text: #1a1d23;
+  --color-sysu-text2: #4a5568;
+  --color-sysu-text3: #586574;
+  --color-sysu-dark: #f0f2f5;
+  --color-sysu-gold: #d4870e;
+  --color-sysu-gold-soft: rgba(200,130,30,0.12);
+  --map-popup-surface: #ffffff;
+  --map-popup-border: #cdd2d9;
+  --map-popup-divider: #cdd2d9;
+  --map-popup-text: #1a1d23;
+  --map-popup-secondary: #4a5568;
+  --map-popup-muted: #586574;
+}
+
+[data-theme="light"] .text-db-text3,
+[data-theme="light"] .text-sysu-text3 {
+  opacity: 1;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #586574;
+  opacity: 1;
+}
+
+[data-theme="light"] .text-green-400,
+[data-theme="light"] .text-green-500,
+[data-theme="light"] .text-emerald-400 { color: #166534; }
+[data-theme="light"] .text-blue-400,
+[data-theme="light"] .text-blue-500,
+[data-theme="light"] .text-sky-400 { color: #1e40af; }
+[data-theme="light"] .text-amber-400,
+[data-theme="light"] .text-yellow-400 { color: #92400e; }
+[data-theme="light"] .text-red-400,
+[data-theme="light"] .text-red-500 { color: #991b1b; }
+[data-theme="light"] .text-orange-400 { color: #9a3412; }
+[data-theme="light"] .text-purple-400 { color: #6b21a8; }
+[data-theme="light"] .text-indigo-400 { color: #3730a3; }
+[data-theme="light"] .text-pink-400 { color: #9d174d; }
+[data-theme="light"] .text-cyan-400 { color: #155e75; }
+[data-theme="light"] .text-sysu-gold { color: #854d0e; }
+[data-theme="light"] .text-gray-300,
+[data-theme="light"] .text-gray-400,
+[data-theme="light"] .text-gray-500,
+[data-theme="light"] .text-gray-100,
+[data-theme="light"] .text-gray-200,
+[data-theme="light"] .text-slate-200 { color: #374151; }
+[data-theme="light"] #usersContent [data-action="delete-user"] { color: #991b1b; }
+
+/* Light scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #e3e7ec;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #b8c0cc;
+  border-color: #e3e7ec;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #a0aab6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1c1e21;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d3035;
+  border-radius: 10px;
+  border: 2px solid #1c1e21;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f444d;
+}
+
+/* Base resets that are easier applied globally */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Dark monochrome map — invert flips OSM light tiles to dark, grayscale removes color tint */
+.leaflet-container {
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+/* Keep every zoom level monochrome; invert the light tiles for the default dark theme. */
+.leaflet-tile-pane {
+  filter: grayscale(1) invert(1);
+}
+
+[data-theme="light"] .leaflet-tile-pane {
+  filter: grayscale(1);
+}
+
+.leaflet-control-attribution .map-credit-disclosure {
+  display: inline-block;
+  max-width: min(240px, calc(100vw - 32px));
+  text-align: left;
+  white-space: normal;
+}
+
+.leaflet-control-attribution .map-credit-disclosure summary {
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.leaflet-control-attribution .map-credit-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.leaflet-control-attribution .map-credit-disclosure[open] > div {
+  max-height: 35vh;
+  overflow: auto;
+  padding: 5px 2px 2px;
+  white-space: normal;
+}
+
+.leaflet-control-attribution {
+  margin: 4px !important;
+  padding: 1px 4px !important;
+  border: 0 !important;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 78%);
+  color: #334155;
+  box-shadow: none !important;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.leaflet-control-attribution a,
+[data-theme="light"] .leaflet-control-attribution a {
+  color: #334155;
+}
+
+[data-theme]:not([data-theme="light"]) .leaflet-control-attribution {
+  background: rgb(15 23 42 / 72%);
+  color: #e2e8f0;
+}
+
+[data-theme]:not([data-theme="light"]) .leaflet-control-attribution a {
+  color: #f8fafc;
+}
+
+.leaflet-control-zoom {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.leaflet-control-zoom a {
+  border: 0 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 4px rgb(15 23 42 / 18%);
+}
+
+/* Allow text selection in inputs */
+input,
+textarea,
+button,
+a,
+[contenteditable="true"] {
+  cursor: auto;
+  user-select: text;
+}
+button,
+a {
+  cursor: pointer;
+}
+
+/* Animation Keyframes for the UI (Too complex for inline Tailwind utilities) */
+@keyframes truck-move {
+  0% { transform: translateX(-120px); }
+  100% { transform: translateX(calc(100vw + 120px)); }
+}
+@keyframes truck-move-r {
+  0% { transform: translateX(calc(100vw + 120px)) scaleX(-1); }
+  100% { transform: translateX(-120px) scaleX(-1); }
+}
+@keyframes pulse-dot {
+  0%, 100% { r: 4; opacity: 1; }
+  50% { r: 7; opacity: 0.5; }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -30; }
+}
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(0); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+@keyframes truck1-anim {
+  0% { transform: translate(200px, 450px) rotate(-35deg); opacity: 1; }
+  15% { transform: translate(245px, 405px) rotate(-35deg); }
+  30% { transform: translate(300px, 355px) rotate(-25deg); }
+  50% { transform: translate(370px, 310px) rotate(-12deg); }
+  70% { transform: translate(445px, 265px) rotate(-10deg); }
+  85% { transform: translate(490px, 235px) rotate(-10deg); }
+  100% { transform: translate(525px, 200px) rotate(-10deg); opacity: 0; }
+}
+@keyframes truck2-anim {
+  0% { transform: translate(200px, 450px) rotate(-5deg); opacity: 1; }
+  25% { transform: translate(265px, 430px) rotate(-3deg); }
+  50% { transform: translate(330px, 417px) rotate(-5deg); }
+  75% { transform: translate(415px, 395px) rotate(-8deg); }
+  100% { transform: translate(490px, 360px) rotate(-10deg); opacity: 0; }
+}
+@keyframes truck3-anim {
+  0% { transform: translate(200px, 450px) rotate(5deg); opacity: 1; }
+  25% { transform: translate(270px, 462px) rotate(3deg); }
+  50% { transform: translate(360px, 473px) rotate(-2deg); }
+  75% { transform: translate(455px, 467px) rotate(-5deg); }
+  100% { transform: translate(550px, 440px) rotate(-8deg); opacity: 0; }
+}
+@keyframes ring-pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Custom Tailwind Classes (to keep HTML slightly cleaner for repetitive elements) */
+@layer components {
+  .btn-login {
+    @apply w-full p-[14px] bg-sysu-red border-none rounded-xl text-[14.5px] font-semibold font-display text-white cursor-pointer mb-[13px] transition-all duration-200 shadow-[0_4px_22px_theme(colors.sysu-red-glow)] tracking-[0.02em] flex items-center justify-center gap-2;
+  }
+  .btn-login:hover:not(:disabled) {
+    @apply bg-[#a80e25] -translate-y-[1px] shadow-[0_8px_30px_rgba(200,16,46,0.42)];
+  }
+  .btn-login:active:not(:disabled) {
+    @apply translate-y-0;
+  }
+  .btn-login:disabled {
+    @apply bg-[#d0d0d8] cursor-not-allowed transform-none shadow-none text-white;
+  }
+
+  .btn-google {
+    @apply w-full p-[13px] bg-white border border-[#e2e2ea] rounded-xl text-[13.5px] font-medium font-body text-[#333] cursor-pointer flex items-center justify-center gap-[9px] mb-4 transition-all duration-200;
+  }
+  .btn-google:hover:not(:disabled) {
+    @apply border-[#c5c5d0] shadow-[0_2px_14px_rgba(0,0,0,0.07)];
+  }
+  .btn-google:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full py-[13px] px-4 bg-white border border-[#e2e2ea] rounded-xl text-[14px] font-body text-[#111] outline-none transition-all duration-200 appearance-none placeholder:text-[#c0c0ce];
+  }
+  .input-field:focus {
+    @apply border-sysu-red shadow-[0_0_0_3px_rgba(200,16,46,0.09)];
+  }
+  .input-field.error-field {
+    @apply border-sysu-red;
+  }
+
+  .alert-msg {
+    @apply hidden text-[12px] mb-[14px] text-center py-[9px] px-[14px] rounded-lg border-[0.5px];
+  }
+  .alert-msg.show {
+    @apply block;
+  }
+  .alert-msg.error {
+    @apply text-[#be1c1c] bg-sysu-red/5 border-sysu-red/20;
+  }
+  .alert-msg.success {
+    @apply text-[#15803d] bg-[#16a34a]/10 border-[#16a34a]/20;
+  }
+
+  #regOverlay, #pendingOverlay {
+    display: none;
+    opacity: 0;
+  }
+  #regOverlay.show, #pendingOverlay.show {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Driver Card Premium Styling */
+  .drv-card-premium {
+    @apply bg-db-panel/40 backdrop-blur-md border border-db-border rounded-2xl p-6 transition-all duration-300;
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+  }
+  .drv-card-premium:hover {
+    @apply -translate-y-1 border-sysu-red/40 bg-db-panel/60;
+    box-shadow: 0 12px 40px -4px rgba(200, 16, 46, 0.15);
+  }
+}
+
+/* Subtle Scrollbar for Table Wrap */
+#tableWrap::-webkit-scrollbar,
+#sapTableWrap::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+#tableWrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+#sapTableWrap::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 42px; /* Starts below the sticky header */
+  margin-bottom: 10px; /* Prevents hitting the bottom edge */
+}
+#tableWrap::-webkit-scrollbar-thumb,
+#sapTableWrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+#tableWrap:hover::-webkit-scrollbar-thumb,
+#sapTableWrap:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── SAP Filter Pill Tabs ────── */
+
+[id^="sapTab"] {
+  border-color: transparent;
+  transition: border-color 200ms ease, box-shadow 200ms ease, color 200ms ease;
+}
+
+[id^="sapTab"].active {
+  border-color: var(--st-color) !important;
+  box-shadow: 0 0 14px var(--st-soft);
+}
+
+[id^="sapTab"] .st-dot {
+  background-color: var(--st-color);
+  opacity: 0.35;
+  transition: opacity 200ms ease, box-shadow 200ms ease;
+}
+
+[id^="sapTab"].active .st-dot {
+  opacity: 1;
+  box-shadow: 0 0 6px var(--st-glow);
+}
+
+/* Light-mode: active-pill backgrounds */
+[data-theme="light"] [id^="sapTab"].active {
+  box-shadow: 0 0 10px var(--st-soft);
+}
+
+/* Toast show state */
+#toast {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#toast.show {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) !important;
+}
+#toast.toast-error {
+  border-color: #dc2626;
+  color: #b91c1c;
+  box-shadow: 0 8px 24px rgba(127, 29, 29, 0.2);
+}
+#toast.toast-error > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+[data-theme="dark"] #toast.toast-error {
+  color: #fecaca;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(220, 38, 38, 0.14);
+}
+
+/* POD Zoom Controls */
+#podPreviewModal .relative {
+  position: relative;
+}
+
+#podPreviewModal input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#podPreviewModal input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c8102e;
+  cursor: pointer;
+}
+
+#podPreviewModal input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c8102e;
+  cursor: pointer;
+}
+
+/* POD Zoom */
+#podPreviewImg {
+  transition: transform 0.2s ease;
+  cursor: zoom-in;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+#podPreviewImg.grabbing {
+  cursor: grabbing;
+}
+
+#podPreviewImg.grab {
+  cursor: grab;
+}
+
+/* ─── FIFO-NEXT driver highlight (Assign Driver modal) ───────────────────
+   Industrial: 3px gold rail on the left edge, slow opacity pulse. The rest
+   of the row stays quiet. No halo, no gradient sweep, no thick border.
+*/
+.driver-row.fifo-next {
+    position: relative;
+    background: rgba(245, 166, 35, 0.05);
+    animation: fifo-rail-pulse 2400ms ease-in-out infinite;
+}
+.driver-row.fifo-next::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-sysu-gold, #f5a623);
+}
+
+@keyframes fifo-rail-pulse {
+    0%, 100% { background: rgba(245, 166, 35, 0.05); }
+    50%      { background: rgba(245, 166, 35, 0.10); }
+}
+
+/* ─── Override-APPROVED driver highlight (Assign Driver modal) ──────────────
+   Same industrial treatment as fifo-next, but blue. Used when the dispatcher
+   has an approved admin bypass token for a non-FIFO driver — that row is
+   the one the token applies to, so it should pulse to show "click me".
+   Distinct from fifo-next (gold) so the dispatcher can tell the two states
+   apart at a glance.
+*/
+.driver-row.override-approved {
+    position: relative;
+    background: rgba(59, 130, 246, 0.08);
+    animation: override-rail-pulse 1800ms ease-in-out infinite;
+    cursor: pointer;
+}
+.driver-row.override-approved::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.55);
+}
+.driver-row.override-approved:hover {
+    background: rgba(59, 130, 246, 0.14);
+}
+
+@keyframes override-rail-pulse {
+    0%, 100% { background: rgba(59, 130, 246, 0.08); }
+    50%      { background: rgba(59, 130, 246, 0.18); }
+}
+
+.override-approved-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 7px 2px 6px;
+    background: #3b82f6;
+    color: #ffffff;
+    border-radius: 2px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-left: 8px;
+    line-height: 1;
+}
+.override-approved-tag::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    animation: override-tag-blink 1800ms ease-in-out infinite;
+}
+
+@keyframes override-tag-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .driver-row.override-approved {
+        animation: none;
+        background: rgba(59, 130, 246, 0.14);
+    }
+    .override-approved-tag::before {
+        animation: none;
+    }
+}
+
+/* ─── Rail buttons — refined visual treatment (applies to every rail action) ───── */
+.docs-rail-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--color-db-border), 0 0 0 3px rgba(200, 16, 46, 0.18);
+}
+
+.docs-rail-btn .docs-rail-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.docs-rail-btn:hover .docs-rail-icon {
+    filter: drop-shadow(0 0 3px rgba(245, 166, 35, 0.22));
+}
+
+/* Per-button dot accent — only Documents carries a brand mark at rest */
+.docs-rail-btn .docs-rail-dot {
+    box-shadow: 0 0 6px rgba(200, 16, 46, 0.7);
+}
+
+/* Logout (red) gets its own hue in the hover glow */
+.docs-rail-btn[id="logoutBtn"]:hover .docs-rail-icon {
+    filter: drop-shadow(0 0 4px rgba(240, 68, 68, 0.32));
+}
+
+.docs-rail-tooltip {
+    letter-spacing: 0.005em;
+}
+
+[data-theme="light"] .docs-rail-tooltip {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .docs-rail-btn,
+    .docs-rail-icon,
+    .docs-rail-dot,
+    .docs-rail-tooltip {
+        transition: none !important;
+    }
+}
+
+@keyframes fifo-rail-pulse {
+    0%, 100% { background: rgba(245, 166, 35, 0.05); }
+    50%      { background: rgba(245, 166, 35, 0.10); }
+}
+
+.fifo-next-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 7px 2px 6px;
+    background: var(--color-sysu-gold, #f5a623);
+    color: #0a0a0a;
+    border-radius: 2px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-left: 8px;
+    line-height: 1;
+}
+.fifo-next-tag::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .driver-row.fifo-next {
+        animation: none;
+        background: rgba(245, 166, 35, 0.08);
+    }
+}
+
+.sap-obd-table {
+  width: 100%;
+  max-width: 100%;
+}
+
+.sap-obd-table th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1023px) {
+  .sap-obd-table,
+  .sap-obd-table tbody,
+  .sap-obd-table tfoot {
+    display: block;
+    width: 100%;
+  }
+
+  .sap-obd-table colgroup {
+    display: none;
+  }
+
+  .sap-obd-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .sap-obd-table tbody > tr:not([data-obd-group-details]),
+  .sap-obd-table tfoot > tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem 0.75rem;
+    width: 100%;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-db-border);
+  }
+
+  .sap-obd-table td {
+    display: block;
+    min-width: 0;
+    padding: 0.375rem 0.25rem;
+    overflow-wrap: anywhere;
+    text-align: left;
+  }
+
+  .sap-obd-table td[data-label]::before {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--color-db-text3);
+    font-family: var(--font-body);
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    content: attr(data-label);
+  }
+
+  .sap-obd-table tbody > tr[data-obd-group-details] {
+    display: block;
+    width: 100%;
+  }
+
+  .sap-obd-table tbody > tr[data-obd-group-details][hidden] {
+    display: none;
+  }
+
+  .sap-obd-table tbody > tr[data-obd-group-details] > td {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .sap-obd-table tfoot td:empty {
+    display: none;
+  }
+
+  #sapDtlTotalAmount::before { content: "Amount"; }
+  #sapDtlTotalVolume::before { content: "Volume (m³)"; }
+  #sapDtlTotalWeight::before { content: "Weight (kg)"; }
+  #sapDtlTotalQty::before { content: "Quantity"; }
+}
+
+/* Driver Action uses one marker style; route color indicates outbound or return travel. */
+.leaflet-div-icon.driver-action-marker-host {
+  background: transparent;
+  border: 0;
+}
+
+.driver-action-marker {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: #fff;
+  background: #c8102e;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 2px;
+  box-shadow: 0 3px 9px rgb(15 23 42 / 38%), 0 0 0 2px rgb(15 23 42 / 64%);
+  cursor: pointer;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition: filter 140ms ease, box-shadow 140ms ease;
+}
+
+.driver-action-marker svg {
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+}
+
+.driver-action-marker__count {
+  display: grid;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 2px;
+  place-items: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  transform: rotate(45deg);
+}
+
+.driver-action-marker--screen { --driver-action-marker-color: #1d4ed8; }
+.driver-action-marker--queue { --driver-action-marker-color: #6d28d9; }
+.driver-action-marker--shipment { --driver-action-marker-color: #b45309; }
+.driver-action-marker--loading { --driver-action-marker-color: #047857; }
+.driver-action-marker--transit { --driver-action-marker-color: #0e7490; }
+.driver-action-marker--delivery { --driver-action-marker-color: #be123c; }
+.driver-action-marker--warehouse { --driver-action-marker-color: #334155; }
+.driver-action-marker--pod { background: #ea580c; }
+.driver-action-marker--pod .driver-action-marker__count {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border: 1px solid #c2410c;
+  border-radius: 999px;
+  background: #fff;
+  color: #c2410c;
+  font-size: 9px;
+  line-height: 14px;
+  transform: rotate(45deg);
+}
+
+.leaflet-marker-icon.driver-action-marker-host:hover .driver-action-marker,
+.leaflet-marker-icon.driver-action-marker-host:focus-visible .driver-action-marker {
+  z-index: 1000;
+  filter: brightness(1.08);
+  box-shadow: 0 4px 12px rgb(15 23 42 / 45%), 0 0 0 3px rgb(255 255 255 / 92%);
+}
+
+.leaflet-marker-icon.driver-action-marker-host:focus-visible .driver-action-marker {
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+}
+
+.driver-action-map-key {
+  color: var(--color-db-text, #0f172a);
+  font-size: 11px;
+}
+
+.driver-action-map-key > summary {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-db-panel, #fff);
+  cursor: pointer;
+  font-weight: 700;
+  list-style-position: inside;
+}
+
+.driver-action-map-key > summary:focus-visible,
+.driver-action-event-item > summary:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.driver-action-map-key__panel {
+  width: min(230px, calc(100vw - 32px));
+  margin-top: 4px;
+  padding: 9px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-db-panel, #fff);
+  box-shadow: 0 1px 5px rgb(15 23 42 / 18%);
+}
+
+.driver-action-map-key__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 9px;
+}
+
+.driver-action-map-key__grid > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.driver-action-map-key__grid i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border-radius: 50%;
+  background: var(--driver-action-marker-color);
+}
+
+.driver-action-map-key__grid .driver-action-map-key__action {
+  background: #c8102e;
+}
+
+.driver-action-map-key__grid .driver-action-map-key__pod {
+  background: #ea580c;
+}
+
+.driver-action-map-key__grid .driver-action-map-key__gps {
+  width: 9px;
+  height: 9px;
+  flex-basis: 9px;
+  background: #334155;
+}
+
+.driver-action-map-key__routes {
+  display: grid;
+  gap: 7px;
+  margin-top: 7px;
+  padding-top: 0;
+}
+
+.driver-action-map-key__route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.driver-action-map-key__route > i {
+  width: 24px;
+  height: 4px;
+  flex: 0 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #16a34a;
+}
+
+.driver-action-map-key__route--returning > i {
+  background: #2563eb;
+}
+
+.driver-action-event-list {
+  display: grid;
+  gap: 6px;
+  max-height: 330px;
+  margin-top: 8px;
+  overflow: auto;
+}
+
+.driver-action-event-item {
+  border: 0;
+  border-radius: 0;
+}
+
+.driver-action-event-item summary {
+  display: block;
+  padding: 7px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.driver-action-event-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.driver-action-event-details {
+  padding: 0 8px 8px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.driver-action-directory-toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body {
+    height: 100dvh;
+  }
+
+  body > nav {
+    height: 100dvh;
+  }
+
+  #sidePanel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: var(--spacing-rail-w);
+    z-index: 650;
+    width: 0;
+    max-width: calc(100vw - var(--spacing-rail-w));
+    height: 100dvh;
+    box-shadow: none;
+  }
+
+  #sidePanel.open {
+    width: min(var(--spacing-panel-w), calc(100vw - var(--spacing-rail-w)));
+    box-shadow: 8px 0 28px rgb(15 23 42 / 30%);
+  }
+
+  #driverActionScreen {
+    position: relative;
+  }
+
+  #driverActionDirectoryPanel {
+    position: absolute;
+    z-index: 700;
+    inset: 0 auto 0 0;
+    width: min(290px, 86vw);
+    max-width: 86vw;
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+    box-shadow: 0 8px 28px rgb(15 23 42 / 30%);
+  }
+
+  #driverActionDirectoryPanel.is-open {
+    transform: translateX(0);
+  }
+
+  .driver-action-directory-toggle {
+    position: absolute;
+    z-index: 550;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 1px solid var(--color-db-border, #cbd5d9);
+    border-radius: 9px;
+    color: var(--color-db-text, #0f172a);
+    background: var(--color-db-panel, #fff);
+    box-shadow: 0 4px 14px rgb(15 23 42 / 18%);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .driver-action-directory-toggle:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  #driverActionPlotStatus {
+    top: 68px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+  }
+
+  .driver-action-map-key {
+    bottom: 12px;
+    left: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driver-action-marker,
+  #driverActionDirectoryPanel {
+    transition: none;
+  }
+}

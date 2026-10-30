@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="32dp">
+
+    <!-- Drag handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="@dimen/drag_handle_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_drag_handle" />
+
+    <!-- Header: title + subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guard Signature"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        android:textColor="@color/sysu_red"
+        android:letterSpacing="0.02" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign below to confirm verification"
+        android:textSize="@dimen/text_size_body"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="18dp" />
+
+    <!-- Signature canvas — full width, generous height -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:cardCornerRadius="@dimen/corner_radius_button"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="@color/sysu_red">
+
+        <com.sysu.go.activities.SignaturePadView
+            android:id="@+id/signaturePad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+        <!-- Professional placeholder: clean dashed signature line — no emoji, paper-form aesthetics -->
+        <LinearLayout
+            android:id="@+id/signatureHintContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="22dp">
+
+            <View
+                android:layout_width="160dp"
+                android:layout_height="@dimen/divider_height"
+                android:background="#DDDDDD" />
+
+            <TextView
+                android:id="@+id/tvSignatureHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Sign above"
+                android:textColor="#BBBBBB"
+                android:textSize="@dimen/text_size_caption"
+                android:letterSpacing="0.08"
+                android:textAllCaps="true" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Helper text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw your signature with your finger"
+        android:textSize="@dimen/text_size_caption"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Action buttons — Clear + Confirm -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:text="CLEAR"
+            android:textAllCaps="true"
+            android:letterSpacing="0.06"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:cornerRadius="@dimen/corner_radius_small"
+            app:strokeColor="@color/sysu_red"
+            android:textColor="@color/sysu_red" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="CONFIRM SIGNATURE"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            app:backgroundTint="@color/sysu_red"
+            app:cornerRadius="@dimen/corner_radius_small" />
+
+    </LinearLayout>
+
+</LinearLayout>

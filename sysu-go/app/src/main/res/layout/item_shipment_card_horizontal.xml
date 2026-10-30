@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Horizontal shipment card — used inside the main dashboard's rvShipmentCards
+    when the driver has 2+ assigned shipments.
+
+    Width is fixed at 260dp so horizontal scrolling works as a carousel.
+    Card height is compact (64dp) to match a pill-row aesthetic —
+    identical visual language to item_shipment_card.xml but portrait-friendly
+    for a side-scrolling list.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardShipmentHoriz"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/corner_radius_pill"
+    app:cardElevation="6dp"
+    app:cardPreventCornerOverlap="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="14dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Left icon circle -->
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_circle_light_red"
+                android:backgroundTint="@color/sysu_red"
+                android:alpha="0.15" />
+            <ImageView
+                android:id="@+id/ivTicketIconHoriz"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ticket_1"
+                app:tint="@color/sysu_red" />
+        </FrameLayout>
+
+        <!-- Text block -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvCardLabelHoriz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Queue"
+                android:textSize="@dimen/text_size_label"
+                android:textColor="@color/black"
+                android:fontFamily="@font/atkinson_hyperlegible_bold"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tvCardSubtitleHoriz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/atkinson_hyperlegible_regular"
+                android:layout_marginTop="2dp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Status dot — green when this shipment is the active trip -->
+        <View
+            android:id="@+id/vStatusDotHoriz"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_status_dot_green"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/text_muted" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,15 @@
+# Container deployment status
+
+The Docker build contexts include the runtime `backend/constants` module required by the API. Compose reads runtime settings from `backend/.env` and publishes the API on `127.0.0.1` by default, so an Apache reverse proxy on the same host can connect without exposing the container port on every interface. Keep that environment file out of source control and set secrets through an approved host secret store.
+
+These packaging and port-binding corrections do not make the container a verified production deployment. The current MySQL configuration accepts only loopback database hosts; inside a container, `localhost` refers to that container, and Compose does not start MySQL. The API therefore cannot reach the host's MySQL server through its current loopback-only policy. Do not weaken that database guard as a shortcut.
+
+For the supported local workflow, run the backend directly with `npm run dev` from the repository root and use the shared local database configured in `backend/.env`. Do not use retired Firebase deployment environment fields from older deployment notes.
+
+The API and Socket.IO backend require a Node.js runtime; a LAMP stack alone does not run them. The Compose file contains only the API, not the web frontend or a MySQL service. Apache can serve the frontend build from SYSU App and proxy API plus Socket.IO HTTP/WebSocket traffic to Node, but no Apache virtual-host/reverse-proxy configuration is supplied or verified here. No production or LAMP deployment was performed as part of this local migration.
+
+Every Go HTTP endpoint under `/api` has a shared in-process per-IP limit of 1,200 requests per 15 minutes by default; authentication and diagnostics routes apply additional, stricter limits. Configure `TRUST_PROXY` in `backend/.env` only after verifying the Apache proxy chain, using a hop count or explicit proxy IP/CIDR; do not use `true`. The in-process counter is per Node process, so each Node instance maintains its own request counts.
+
+Before using this stack for deployment, define and review the database networking and secret-management model, provide and test the Apache HTTP/WebSocket proxy configuration, then run deployment-equivalent API, Socket.IO, and MySQL checks. `/api/health` reports process liveness; `/api/health/ready` confirms the configured `sysu_fleet_app` database and a successful read-only `SELECT 1` without exposing connection details.
+
+The companion SYSU App repository provides a read-only [deployment smoke check](../../sysu-app/docs/container-deployment.md#read-only-deployment-smoke-check) for the public frontend, both API origins, both MySQL readiness routes, and both WebSocket upgrades. The diagnostics panel also checks App and Go database readiness separately. These checks show whether both services reach a database named `sysu_fleet_app`; they do not identify whether the company host routes both services to the same MySQL instance. The local development environment was separately verified against the same instance.

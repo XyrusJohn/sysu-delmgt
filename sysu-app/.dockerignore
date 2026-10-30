@@ -1,0 +1,15 @@
+**
+!backend/
+!backend/package.json
+!backend/package-lock.json
+!backend/src/
+!backend/src/**
+**/.env
+**/*.env
+**/service-account.json
+**/firebase-qr.json
+**/*.pem
+**/*.key
+**/*credentials*.json
+**/*.json.bak
+**/*.log

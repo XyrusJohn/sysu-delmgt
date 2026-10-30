@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Enterprise camera icon — stroke-based for professional clarity.
+     Structure:
+       - Body: rounded rectangle outline in dark charcoal
+       - Lens: filled dark circle centered in body
+       - Top bar: flat dark bar above body
+       - Badge: solid circle (green when camera available / amber for pending) applied at runtime via setBackgroundResource()
+       - Checkmark: appears only for completed states (ic_checkmark_white.svg used instead)
+     Usage: setBackgroundResource(bg_badge_amber/green/red) + setImageResource(this).
+     Icon body stays dark-gray so it reads clearly against any badge background. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:autoMirrored="false">
+
+    <!-- Camera body — dark charcoal rounded rectangle -->
+    <path
+        android:fillColor="#FF37474F"
+        android:pathData="M2,7C2,5.895 2.895,5 4,5H20C21.105,5 22,5.895 22,7V17C22,18.105 21.105,19 20,19H4C2.895,19 2,18.105 2,17V7Z"/>
+
+    <!-- Lens ring — slightly lighter circle visible inside body -->
+    <path
+        android:fillColor="#FF455A64"
+        android:pathData="M12,8.5C14.49,8.5 16.5,10.51 16.5,13C16.5,15.49 14.49,17.5 12,17.5C9.51,17.5 7.5,15.49 7.5,13C7.5,10.51 9.51,8.5 12,8.5Z"/>
+
+    <!-- Lens inner dot -->
+    <path
+        android:fillColor="#FF263238"
+        android:pathData="M12,10.5C13.38,10.5 14.5,11.62 14.5,13C14.5,14.38 13.38,15.5 12,15.5C10.62,15.5 9.5,14.38 9.5,13C9.5,11.62 10.62,10.5 12,10.5Z"/>
+
+    <!-- Top viewfinder/slot bar -->
+    <path
+        android:fillColor="#FF37474F"
+        android:pathData="M6,3H18V5H6V3Z"/>
+
+    <!-- Flash dot -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M18,10C18.55,10 19,10.45 19,11C19,11.55 18.55,12 18,12C17.45,12 17,11.55 17,11C17,10.45 17.45,10 18,10Z"/>
+
+</vector>

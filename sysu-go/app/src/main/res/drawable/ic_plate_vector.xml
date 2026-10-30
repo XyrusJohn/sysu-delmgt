@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <!-- License plate rectangle with rounded corners -->
+  <path
+      android:pathData="M4,4h16v7H4z"
+      android:fillColor="#999999"/>
+  <!-- Two small rivets -->
+  <path
+      android:pathData="M5,4v7"
+      android:strokeWidth="1"
+      android:strokeColor="#666666"/>
+  <path
+      android:pathData="M19,4v7"
+      android:strokeWidth="1"
+      android:strokeColor="#666666"/>
+  <!-- Top line on plate -->
+  <path
+      android:pathData="M5,7h14"
+      android:strokeWidth="0.8"
+      android:strokeColor="#666666"/>
+  <!-- Small rectangle below (screw/rivet) -->
+  <path
+      android:pathData="M4,17h3v3H4z"
+      android:fillColor="#999999"/>
+  <path
+      android:pathData="M17,17h3v3h-3z"
+      android:fillColor="#999999"/>
+  <!-- Vertical lines between plates -->
+  <path
+      android:pathData="M15,11h2M7,11h2"
+      android:strokeWidth="1"
+      android:strokeColor="#999999"/>
+</vector>

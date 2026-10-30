@@ -1,0 +1,9 @@
+Driver Start Trip (Kotlin)
+  |
+POST (api/start-trip)
+  |
+Backend
+  |
+INSERT trip record
+  |
+MySQL trip table

@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PodPreview > renders with different date 1`] = `
+<div>
+  <div>
+    <button
+      class="p-1 bg-db-panel/30 border border-db-border rounded hover:bg-db-item-hover/50 transition-colors"
+    >
+      <img
+        alt="POD thumbnail"
+        class="h-10 w-auto object-contain"
+        src="https://example.com/image2.jpg"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`PodPreview > renders with image 1`] = `
+<div>
+  <div>
+    <button
+      class="p-1 bg-db-panel/30 border border-db-border rounded hover:bg-db-item-hover/50 transition-colors"
+    >
+      <img
+        alt="POD thumbnail"
+        class="h-10 w-auto object-contain"
+        src="https://example.com/image.jpg"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`PodPreview > renders without image 1`] = `
+<div>
+  <div>
+    <button
+      class="p-1 bg-db-panel/30 border border-db-border rounded hover:bg-db-item-hover/50 transition-colors"
+    >
+      <span
+        class="text-xs text-db-text3"
+      >
+        No Image
+      </span>
+    </button>
+  </div>
+</div>
+`;

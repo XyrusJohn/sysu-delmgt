@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_section_card"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Title and Status Tag -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="📍 Lokasyon (GPS)"
+            android:textColor="@color/sysu_red"
+            android:textSize="14sp"
+            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kailangan"
+            android:textColor="@color/sysu_red"
+            android:textSize="10sp"
+            android:background="@drawable/bg_chip_required"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:fontFamily="@font/atkinson_hyperlegible_bold" />
+    </LinearLayout>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/tvItemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Kailangan naka-set sa 'Allow all the time' at Precise Location."
+        android:textColor="@color/text_primary"
+        android:textSize="12sp"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:lineSpacingExtra="2dp" />
+
+    <!-- Where to find in settings guide -->
+    <TextView
+        android:id="@+id/tvItemGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Saan hahanapin: Settings > Permissions > Location"
+        android:textColor="@color/text_muted"
+        android:textSize="11sp"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+</LinearLayout>

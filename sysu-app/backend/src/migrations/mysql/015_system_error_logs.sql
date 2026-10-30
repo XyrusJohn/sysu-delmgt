@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS app_system_error_logs (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    event_code VARCHAR(48) NOT NULL,
+    source VARCHAR(16) NOT NULL,
+    severity VARCHAR(16) NOT NULL,
+    message VARCHAR(200) NOT NULL,
+    operation VARCHAR(48) NULL,
+    error_name VARCHAR(80) NULL,
+    request_id VARCHAR(80) NULL,
+    route VARCHAR(120) NULL,
+    actor_id CHAR(36) NULL,
+    details JSON NOT NULL,
+    created_at_ms BIGINT UNSIGNED NOT NULL,
+    resolved_at_ms BIGINT UNSIGNED NULL,
+    resolved_by CHAR(36) NULL,
+    KEY idx_app_system_error_logs_time (created_at_ms),
+    KEY idx_app_system_error_logs_open (resolved_at_ms, created_at_ms),
+    CONSTRAINT fk_app_system_error_logs_actor FOREIGN KEY (actor_id) REFERENCES app_auth_users (public_id),
+    CONSTRAINT fk_app_system_error_logs_resolver FOREIGN KEY (resolved_by) REFERENCES app_auth_users (public_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="8dp"
+    android:background="@drawable/bg_req_chip"
+    android:layout_margin="4dp">
+
+    <ImageView
+        android:id="@+id/ivChipIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_req_aircon"
+        android:contentDescription="requirement icon" />
+
+    <TextView
+        android:id="@+id/tvChipLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Requirement"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_caption"
+        android:fontFamily="@font/atkinson_hyperlegible_regular" />
+
+    <ImageView
+        android:id="@+id/ivChipIndicator"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/req_indicator_empty"
+        android:contentDescription="status indicator" />
+
+</LinearLayout>

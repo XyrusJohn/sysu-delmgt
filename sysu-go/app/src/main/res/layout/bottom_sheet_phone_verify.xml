@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="32dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <!-- Drag handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_drag_handle" />
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:text="Verify Phone Number"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_headline"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvVerifySubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_body"
+        android:layout_marginBottom="24dp" />
+
+    <!-- OTP Digit Boxes -->
+    <LinearLayout
+        android:id="@+id/otpInputRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/etOtp1"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etOtp2"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etOtp3"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etOtp4"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etOtp5"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etOtp6"
+            android:layout_width="44dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_otp_digit"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Error Text -->
+    <TextView
+        android:id="@+id/tvOtpError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:textColor="@color/sysu_red"
+        android:textSize="@dimen/text_size_caption"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Verify Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerifyOtp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:backgroundTint="@color/sysu_red"
+        app:cornerRadius="@dimen/corner_radius_button"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:text="Verify OTP"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_label"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/progressOtp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:indeterminateTint="@color/sysu_red"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Resend Row -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvResendLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/atkinson_hyperlegible_regular"
+            android:text="Didn't receive a code?"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_caption" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnResendOtp"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resend"
+            android:textColor="@color/sysu_red"
+            android:fontFamily="@font/atkinson_hyperlegible_bold"
+            android:textAllCaps="false"
+            android:enabled="false"
+            android:textSize="@dimen/text_size_label"
+            android:paddingHorizontal="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="56"
+    android:viewportHeight="56">
+    <!-- Warning triangle body: sysu_red fill -->
+    <path
+        android:fillColor="#c8102e"
+        android:pathData="M28,6L5.5,49h45L28,6zM28,15.5L49.5,46H6.5z"/>
+    <!-- Exclamation dot: white circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M27,35a3,3 0,1 0,2 0a3,3 0,0 0,-2 0z"/>
+    <!-- Exclamation line: white rounded rect -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M26,12h4v13h-4z"/>
+</vector>

@@ -1,0 +1,226 @@
+sa pag setup ng backend eto mga natutunan ko:
+
+Development Flow:
+Setup the Database first
+	- Stores the Data needed for the application
+Setup the Model
+	- Model talks to Database
+Setup the controller -> middleware
+	- Controller handles the request logic of user
+    - Setting up the token for session 
+        - generateToken
+        - verifyToken
+        - controller
+        - authMiddleware
+Setup the Routes
+	- Define the endpoints
+Setup the Server
+	- Connects to the internet
+
+Program Flow:
+User Request
+  |
+Server <- May Request
+  |
+Routes <- Saan Pupunta to?
+  |
+Controller <- Anong Gagawin ko sa Reques
+  |
+Model <- Kunin / I-save ang Data
+  |
+Database <- Dito nakalagay and Data / Dito i-lalagay ang Data
+  |
+User Response <- Return
+
+
+
+
+Project Structure (Android Native)
+Structure:
+  app
+  └ java/com/example/truckdriverapp
+      ├ activities // Screen ng App (Buong Screen / Buong Room)
+      ├ fragments // Module ng App (Sections sa Room)
+      ├ api // Communication sa Backend (Tagapag padala ng messages)
+        ├ RetrofitClient // Setup ng connection sa backend server
+        ├ ApiService // List of endpoints na pwede kong tawagin
+      └ models // Data Structure (Format na lalagyan ng mga data)
+Development Flow:
+Setup the data structure
+  - Format ng data para sa application
+  |
+Setup the retro RetrofitClient // Setup yung connection sa backend
+Setup the ApiService // Setup naman para sa list of endpoints para sa application
+(Ang purpose lang neto para maconnect yung Android App sa Backend Setup na ginawa ko)
+  |
+Setup the LoginActivity 
+  |
+Setup the MainActivity
+  |
+Setup the DashboardFragment
+
+* Debugging Techniques
+Inorder to turn the splash screen into real loading screen
+(nag vavalidated palang ng session)
+
+// Session Save
+// # FOR FUTURE IMPROVEMENT GAMITAN NG TOKEN
+val prefs = getSharedPreferences("session", MODE_PRIVATE)
+prefs.edit().putInt("id", loginResp.id).apply()
+ginamit ko to para ma save ng session
+
+then I encounter problem na di maka kuha ng id ang system
+does I implement these techniques:
+    // --- DEBUG TOAST START ---
+    // 2. DEBUG TOAST: Ipapakita nito ang data KAHIT FAILED ang login
+    // Mahalaga ito para malaman kung "null" ba ang ID o kung ano ang Error Code
+    val debugMsg = "Code: ${response.code()} | Success: ${loginResp?.success} | ID: ${loginResp?.id}"
+    Toast.makeText(this@LoginActivity, debugMsg, Toast.LENGTH_LONG).show()
+    // --- DEBUG TOAST END ---
+
+    loginController.js:
+    // The Aha Moment
+    console.log("Database Result:", result[0]); // <--- TINGNAN MO ITO SA TERMINAL
+    tinignan ko mismo sa Terminal kung ano ba meron ba talagang result then yung name nung "id" mismo
+    kasi naka tapos yung callback neto:
+    res.json({
+      success: true,
+      message: "Login Successful",
+      id: result[0]._id
+      })
+
+    // DEBUG TOAST: Para malaman kung gumagana ang click
+    Toast.makeText(this@LoginActivity, "Button Clicked!", Toast.LENGTH_SHORT).show()
+
+Core Patterns for Development
+Analyzing the event, callBack and the status per pages
+
+Event
+    └ Action in app (pangyayari sa system)
+        - User interaction → button click, swipe, form submission
+        - System events → GPS update, network response, timer, sensor data
+        - Lifecycle events → Activity/Fragment created, destroyed, paused
+Tip:
+Event = “something happened” → dapat laging may handler o callback/ return into something
+
+callBack
+   └ Function that called when event occur (Anong gagawin pag nangyari ang event)
+        - Button Click (onClickListener())
+        - GPS update → LocationCallback.onLocationResult()
+        - Network request → onResponse() / onFailure()
+Tip:
+Callback = “what to do when something happens”
+
+state
+    └ Variable for storing the status of an event
+        isTracking = true/false → GPS tracking
+        isLoggedIn = true/false → user session
+        cartItems → list ng mga items sa shopping cart
+Tip:
+State = “current status of the app” → ginagamit para magdesisyon sa susunod na event
+
+🗺️ PART 1: The Development Flow (Ang Pagbuo)
+Laging tandaan: "Data First, UI Last." Huwag kang gagawa ng button kung wala ka pang pagsasave-an ng data.
+Step 1: Ang "File Cabinet" (MySQL Setup)
+•
+Ano: Gagawa ka ng tables sa MySQL (driver, gps_logs, trips).
+•
+Bakit: Dito lahat matatapos ang data. Kung wala ito, walang saysay ang app mo.
+Step 2: Ang "Office" (Backend Setup - Node.js)
+1.
+db.js: I-konekta ang Node.js sa MySQL.
+2.
+Models: Isulat ang mga SQL commands (INSERT, SELECT).
+3.
+Controllers: Dito ang utak. "Pag may dumating na data, i-save mo."
+4.
+Routes: Dito mo gagawin ang address (e.g., /api/gps).
+5.
+server.js: Ang main switch ng server.
+Step 3: Ang "Notebook" (Android Local Storage - Room)
+•
+Ano: Gagawa ka ng @Entity (format ng papel) at DAO (ang secretary na mag-sa-save).
+•
+Bakit: Para kahit walang internet (offline), may record ang driver sa phone niya.
+Step 4: Ang "Messenger" (Android Networking - Retrofit)
+•
+Request/Response: Ang format ng digital parcel.
+•
+ApiService: Ang listahan ng pintong kakatukin sa server.
+•
+RetrofitClient: Ang setup ng address ng server.
+Step 5: Ang "Chef" (Background Logic - Service)
+•
+Ano: LocationServices.kt.
+•
+Bakit: Ito ang nagluluto ng data sa background habang nagda-drive ang user.
+Step 6: Ang "Waiter" (User Interface - Fragment/Activity)
+•
+Ano: Ang buttons at text na nakikita ng user.
+•
+Bakit: Ito ang trigger. Dito inuutusan ng user ang system.
+🔄 PART 2: The Program Flow (Ang Takbo ng Data)
+Isipin mo na ang isang GPS coordinate ay isang "Digital Package." Sundan natin ang biyahe nito:
+1.
+User Trigger: Pinindot ni Driver ang "Start Trip" sa Dashboard.
+◦
+Action: Gagawa ang app ng Trip ID sa database (Room).
+◦
+Action: Gigisingin ang LocationServices (Foreground Service).
+2.
+GPS Sensor: Ang hardware ng phone ay makakaramdam ng galaw (lampas 5 meters).
+◦
+Action: Ipapadala ng Sensor ang Lat at Long sa code natin.
+3.
+Local Saving (Room):
+◦
+Action: Isusulat agad ng app ang coordinates sa phone. Ang status ay synced = false.
+◦
+Bakit: "Sigurado tayo na kahit mamatay ang internet, naitabi natin."
+4.
+Internet Handshake (Retrofit):
+◦
+Action: Titingnan ng app kung may signal. Kung 'Yes', tatawagan si Retrofit.
+◦
+Baton: Ipapasa ang GpsRequest (lat, lng, driver_id).
+5.
+Backend Reception (Node.js):
+◦
+Action: Maririnig ng Route ang katok. Ipapasa sa Controller.
+◦
+Action: Bubuksan ni Controller ang parcel at ipapasa sa Model.
+6.
+Final Storage (MySQL):
+◦
+Action: Isusulat ng Model ang data sa MySQL Table.
+◦
+Receipt: Sasabihin ng Server: "Success! Naitabi ko na." (Status 200).
+7.
+Android Receipt (onResponse):
+◦
+Action: Matatanggap ng app ang "Success" message mula sa server.
+◦
+Action: Babalikan ng app ang record sa phone at papalitan ang status: synced = true.
+8.
+Dashboard Display:
+◦
+Action: Ang browser mo (dashboard.html) ay mag-re-refresh.
+◦
+Action: Makikita na ng Manager ang bagong tuldok sa mapa/table.
+💡 Fool-Proof Tips para sa Beginner:
+1.
+Common Mistake #1 (Mismatch Names):
+◦
+Kung sa Android ang tawag mo ay latitude, pero sa Node.js lat lang ang hanap mo, magiging NULL ang data mo. Dapat laging tugma ang pangalan.
+2.
+Common Mistake #2 (IP Address):
+◦
+Dahil "Local Development" tayo, ang IP address ng computer mo ay nagbabago tuwing mag-re-restart ang Wi-Fi. Laging i-check ang ipconfig at i-update ang RetrofitClient.kt.
+3.
+Common Mistake #3 (Permissions):
+◦
+Kahit perfect ang code mo, kung hindi naka-set sa "Allow all the time" ang location sa settings ng phone, hihinto ang data flow sa Step 2.
+4.
+Debugging Secret:
+◦
+Kung walang pumapasok na data, tingnan ang Terminal ng Node.js. Kung walang lumalabas na log doon, ang problema ay nasa Step 4 (Retrofit). Kung may log doon pero wala sa MySQL, ang problema ay Step 5/6 (Backend Logic).

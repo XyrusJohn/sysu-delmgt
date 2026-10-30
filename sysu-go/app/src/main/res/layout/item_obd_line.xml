@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="60dp"
+    android:gravity="center_vertical"
+    android:paddingEnd="20dp"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <!-- Brand accent bar — red left edge on each data row -->
+    <View
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@color/sysu_red" />
+
+    <!-- OBD Number — monospace, full tracking code readability -->
+    <TextView
+        android:id="@+id/tvObdNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="15dp"
+        android:fontFamily="monospace"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_caption"
+        android:textStyle="normal"
+        android:letterSpacing="0.03"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        tools:text="6051555386" />
+
+    <!-- Quantity — compact, right-aligned (float/double now) -->
+    <TextView
+        android:id="@+id/tvObdQuantity"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_caption"
+        android:textStyle="normal"
+        tools:text="229" />
+
+    <!-- Customer Name — right-aligned, plain text (delivery recipient + address) -->
+    <TextView
+        android:id="@+id/tvCustomerName"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_caption"
+        android:textStyle="normal"
+        android:letterSpacing="0.01"
+        android:ellipsize="middle"
+        android:maxLines="2"
+        android:breakStrategy="balanced"
+        tools:text="Juan dela Cruz — 123 Adel St. Makati" />
+</LinearLayout>

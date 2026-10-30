@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GuardSignature > renders with unverified signature 1`] = `
+<div>
+  <div
+    class="flex items-center space-x-2"
+  />
+</div>
+`;
+
+exports[`GuardSignature > renders with verified signature 1`] = `
+<div>
+  <div
+    class="flex items-center space-x-2"
+  >
+    <img
+      alt="John A. Doe signature"
+      class="h-8 w-auto border border-db-border rounded"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+    />
+    <span
+      class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded"
+    >
+      Verified
+    </span>
+  </div>
+</div>
+`;
+
+exports[`GuardSignature > renders without middle initial 1`] = `
+<div>
+  <div
+    class="flex items-center space-x-2"
+  >
+    <img
+      alt="John Doe signature"
+      class="h-8 w-auto border border-db-border rounded"
+      src="data:image/png;base64,somebase64"
+    />
+    <span
+      class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded"
+    >
+      Verified
+    </span>
+  </div>
+</div>
+`;

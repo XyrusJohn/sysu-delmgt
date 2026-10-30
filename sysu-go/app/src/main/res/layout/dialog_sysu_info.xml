@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SYSU unified info/alert dialog — 1-button (enterprise v2)
+
+  Signature: elevated white card with glass-pill icon circle.
+  Single dismiss button for locked states, errors, connection issues.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:elevation="10dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp"
+    android:paddingHorizontal="28dp">
+
+    <!-- Icon hero — 56dp glass circle behind the SVG icon for depth -->
+    <ImageView
+        android:id="@+id/ivDialogIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_dialog_icon_circle"
+        android:contentDescription="Dialog icon"
+        android:padding="10dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Title — bold, centered -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_body"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:gravity="center"
+        android:layout_marginBottom="6dp" />
+
+    <!-- Message body -->
+    <TextView
+        android:id="@+id/tvDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_label"
+        android:fontFamily="@font/atkinson_hyperlegible_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="22dp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border"
+        android:layout_marginBottom="18dp" />
+
+    <!-- Single dismiss button — filled, full width, bold -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDismiss"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:text="@string/ok"
+        android:textSize="@dimen/text_size_button"
+        android:fontFamily="@font/atkinson_hyperlegible_bold"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/sysu_red"
+        app:cornerRadius="@dimen/corner_radius_button" />
+
+</LinearLayout>

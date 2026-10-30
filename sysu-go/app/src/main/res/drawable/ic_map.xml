@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="116dp"
+    android:height="116dp"
+    android:viewportWidth="116"
+    android:viewportHeight="116">
+  <!-- Outer white circle with red stroke -->
+  <path
+      android:fillColor="#FFFFFFFF"
+      android:strokeColor="#C8102E"
+      android:strokeWidth="7"
+      android:pathData="M 58, 3.5 a 54.5,54.5 0 1,0 0,109 a 54.5,54.5 0 1,0 0,-109"/>
+  <!-- Map pin body - white teardrop shape -->
+  <path
+      android:fillColor="#FFFFFFFF"
+      android:pathData="M 58, 22 C 45.5,22 35.5,31.2 35.5,42.5 C 35.5,57 58,79 58,79 C 58,79 80.5,57 80.5,42.5 C 80.5,31.2 70.5,22 58,22 Z M 58,49.5 C 52.5,49.5 48,45.5 48,40.5 C 48,35.5 52.5,31.5 58,31.5 C 63.5,31.5 68,35.5 68,40.5 C 68,45.5 63.5,49.5 58,49.5 Z"/>
+  <!-- Map pin dot - red circle in center -->
+  <path
+      android:fillColor="#C8102E"
+      android:pathData="M 58, 37.5 a 3,3 0 1,0 0,6 a 3,3 0 1,0 0,-6"/>
+</vector>

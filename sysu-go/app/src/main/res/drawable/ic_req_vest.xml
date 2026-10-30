@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Safety vest body -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,6L7,4L12,3L17,4L20,6L20,10L17,10L17,20L7,20L7,10L4,10Z"/>
+    <!-- Reflective stripes -->
+    <path
+        android:strokeColor="#BDBDBD"
+        android:strokeWidth="1.2"
+        android:pathData="M8,10L8,16M12,10L12,16M16,10L16,16"/>
+</vector>

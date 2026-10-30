@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Circle background: transit_green -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M24,4A20,20 0,1 0,24 44A20,20 0,0 0,24 4Z" />
+    <!-- White checkmark — thick stroke with rounded caps -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M14,25l6,6l14,-14"/>
+</vector>
